@@ -1,0 +1,961 @@
+\documentclass[tikz]{beamer}
+
+
+
+\usepackage{eucal,mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+  
+\usetheme{Darmstadt}
+\colorlet{shadecolor}{gray!15}
+
+\newcommand{\propnumber}{} % initialize
+\newtheorem*{prop}{Proposition \propnumber}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newenvironment{propc}[1]
+  {\renewcommand{\propnumber}{#1}%
+   \begin{shaded}\begin{prop}}
+  {\end{prop}\end{shaded}}
+
+\title{Counting Polymorphic Type Inhabitants}
+\author{Emily Pillmore, Alexander Konovalov}
+\date{May 2019}
+
+\begin{document}
+
+
+\maketitle
+
+\section{Introduction}
+\subsection{}
+
+\begin{frame}{Who are we?}
+
+But who are we and what do we do?
+
+\end{frame}
+
+\begin{frame}{Plan}
+
+We want to prove the following for all $a, b, c \in \mathbb{N}$:
+
+\begin{itemize}
+    \item $a \times (b + c) \cong (a \times b) + (a \times c)$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Plan}
+
+We want to prove the following for all $a, b, c \in \mathbb{N}$:
+
+\begin{itemize}
+    \item $a \times (b + c) \cong (a \times b) + (a \times c)$
+    \item $(b + c)^a \cong b^a \times c^a$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Plan}
+
+We want to prove the following for all $a, b, c \in \mathbb{N}$:
+
+\begin{itemize}
+    \item $a \times (b + c) \cong (a \times b) + (a \times c)$
+    \item $(b + c)^a \cong b^a \times c^a$
+    \item $a^{b + c} \cong a^b \times a^c$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Plan}
+We want to prove the following for all $a, b, c \in \mathbb{N}$:
+
+\begin{itemize}
+
+    \item $a \times (b + c) \cong (a \times b) + (a \times c)$
+    \item $(b + c)^a \cong b^a \times c^a$
+    \item $a^{b + c} \cong a^b \times a^c$
+    \item $(a^b)^c \cong a^{b\times c}$
+\end{itemize}
+    
+\end{frame}{}
+\begin{frame}{But How?}
+    \textbf{Q}: But Alex/Emily, how does this apply to Functional Programming? Why are you even here right now teaching me about highschool arithmetic? 
+    
+    
+\end{frame}{}
+
+\begin{frame}{But How?}
+    \textbf{Q}: But Alex/Emily, how does this apply to Functional Programming? Why are you even here right now teaching me about rudimentary highschool arithmetic? 
+    
+    \textbf{A}: Stand back my son, I will show you the language of \textit{categories}. 
+    
+\end{frame}{}
+
+\begin{frame}[fragile]{Goals}
+
+Here's a sneak peek: 
+
+\begin{propc}{}[LAPC, RAPL]
+    Any category $\mathbf{C}$ admits all limits and colimits indexed by a small category $\mathbf{J}$ if and only if the constant diagram functor $\Delta : \mathbf{C} \rightarrow \mathbf{C}^{\mathbf{J}}$ has a right and left adjoint \textit{colim} $\dashv \Delta \dashv$ \textit{lim}:
+   
+ \end{propc}
+\begin{equation*}
+\begin{tikzcd}
+    \mathbf{C} 
+        \arrow[r, "\Delta" description, line sep] &
+    \mathbf{C^{J}}
+        \arrow[l, bend left=35, "colim"{name=colim, below}]
+        \arrow[l, bend right=35, "lim"{name="lim", above}]
+\end{tikzcd}
+\end{equation*}
+
+When these functors exist, we can prove our arithmetic!
+
+\end{frame}
+
+\begin{frame}{Goals}
+    
+    In functional programming we work with a subtle form of arithmetic every day, but it's rare that we actually \textit{understand} what it is we're doing. It turns out to be a very deep process with a very intuitive facade! We will cover the preliminaries necessary to prove the fundamentals of type-driven arithmetic, and we will use this calculus to bolster our understanding of functional programming as a whole.
+    
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. 
+    
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+
+    
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+    
+\begin{itemize}
+    \item Step 1: (De-)categorification
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+    
+\begin{itemize}
+    \item Step 1: (De-)categorification
+    \item Step 2: The Yoneda lemma
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+    
+\begin{itemize}
+    \item Step 1: (De-)categorification
+    \item Step 2: The Yoneda Lemma
+    \item Step 3: Representability
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+    
+\begin{itemize}
+    \item Step 1: (De-)categorification
+    \item Step 2: The Yoneda Lemma
+    \item Step 3: Representability
+    \item Step 4: A Preliminary Proof
+\end{itemize}
+
+\end{frame}
+\begin{frame}{Steps}
+    
+    Don't worry: we will build the intuition necessary to understand the 
+    previous statement. We will do so by understanding the following processes:
+    
+\begin{itemize}
+    \item Step 1: (De-)categorification
+    \item Step 2: The Yoneda Lemma
+    \item Step 3: Representability
+    \item Step 4: A Preliminary Proof
+\end{itemize}
+    
+And optionally if we have time, 
+\begin{itemize}
+    \item Step 5: Adjunctions, Limits, Colimits
+    \item Step 6: A Proof Using LAPC, RAPL
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Steps}
+    
+    Then, we will count! Lets get started with the preliminaries.
+\end{frame}
+
+\section{Preliminaries}
+\subsection{}
+\begin{frame}{Definitions}
+\begin{definition}[Category]
+A \textbf{Category} consists of the following data:
+\begin{itemize}
+    \item a collection of \textbf{objects} $x, y, z, \ldots$
+    \item a collection of \textbf{morphisms} $f, g, h, \ldots$
+\end{itemize}{}
+ such that 
+\begin{itemize}
+    \item each morphism has specified \textbf{domain} and \textbf{codomain} objects. The notation $f: x \to y$ signifies that the morphism $f$ has domain $x$ and codomain $y$
+    \item each object has an associated \textbf{identity morphism} $1_x : x \to y$
+    \item For any pair of morphisms $f: x \to y, g: y \to z$ there exists a morphism $gf: x \to z$
+\end{itemize}{}
+
+\end{definition}
+\end{frame}
+\begin{frame}{Definitions}
+
+This data is subject to the following axioms: 
+
+\begin{itemize}
+    \item For any $f: x \to y$, the composites $1_y f$ and  $f 1_x$ are both equal to $f$
+    \item For any composable triple $f, g, h$, the composites $h(gf)$ and $(hg)f$ are equal, and we will simply denote them $hgf$.
+    \item Between any two objects $x, y$ in the category $\mathbf{C}$, we may speak of the collection of morphisms with domain $x$ and codomain $y$ called $Hom_{\mathbf{C}}(x, y)$. Sometimes, we will denote this object $\mathbf{C}(X, Y)$ for ease of use.
+\end{itemize}{}
+
+This is to say that the law of composition is \textit{associative} and \textit{unital} with the morphisms $1_{(-)}$  serve as two-sided identities 
+\end{frame}
+
+\begin{frame}{Definitions}
+\begin{enumerate}[i]
+    \item \textbf{Set} has sets as its objects, and functions with specified domain and codomain as morphisms
+    \item \textbf{Pos} has partially-ordered sets as objects and order-preserving functions as morphisms
+    \item \textbf{Top} has topological spaces as objects and continuous functions as morphisms
+    \item \textbf{Mon} has the single point set $1$ as its only object, and its morphisms are the elements of the monoid with composition given by the monoid operation.
+    \item \textbf{Hask}... (just kidding)
+\end{enumerate}{}
+\end{frame}
+\begin{frame}{Definitions}
+    All of these are examples of concrete categories - categories in which the collection of objects and collection of morphisms are both \textit{sets}. However, there are categories with in which one or more of these collections is larger than sets (like the category of categories), so we must introduce some subtlety to the theory in order to avoid category-theoretic versions of Russel's paradox in inopportune places. 
+\end{frame}{}
+\begin{frame}{Definitions}
+    Lets introduce a few definitions that we'll use sparingly when in need:
+    
+\begin{definition}
+
+A category $\mathbf{C}$ is...
+\begin{itemize}
+    \item \textbf{concrete} if its collection of objects and morphisms are both sets.
+    \item  \textbf{small} if only its collection of morphisms is a set.
+    \item \textbf{locally small} if for any two objects $x$ and $y$, $\mathbf{C}(x, y)$  is a set.
+\end{itemize}{}
+\end{definition}
+
+For our purposes, when working with types, we are usually working in a concrete category, if not $\mathbf{C}$ directly. 
+\end{frame}
+ 
+\begin{frame}{Definitions}
+    \begin{definition}
+        For every category $\mathbf{C}$ we may speak about its \textbf{dual} notion $\mathbf{C}^{op}$, the \textbf{opposite category} of $\mathbf{C}$, which consists of the following data: 
+        \begin{itemize}
+            \item the same objects as $\mathbf{C}$
+            \item a morphism $f^{op}$ in $\mathbf{C}^{op}$ for each morphism $f$ in $\mathbf{C}$ with the codomain and domain reversed. i.e. when $f: x \to y$, $f^{op} : y \to x$.
+        \end{itemize}{}
+    \end{definition}{}
+\end{frame}{}
+
+
+\begin{frame}{Definitions}
+The data described in the previous slide defines a category in relation to itself. The process of "turning around the arrows" or "swapping domains and codomains" exhibits a syntactic self-duality for every category, retaining the precisely the same information as $\mathbf{C}$. In this way, we have a unique perspective in Category Theory: For every theorem proven in general for a category, we immediately prove its dual, since the opposite category is a valid category in its own right. More generally, if one proves theorems "for all categories $\mathbf{C_1}, \mathbf{C_2}, \ldots , \mathbf{C_n}$", then this leads to $2^n$ dual theorems. In practice though, these dual theorems do not differ meaningfully from the original.
+    
+\end{frame}{}
+
+\begin{frame}{Definitions}
+    We will now introduce the types of morphisms you will encounter in the wild. Much like the injective/bijective/surjective functions on sets that we are used to, we have abstract version notions of these concepts.
+\end{frame}{}
+
+\begin{frame}{Definitions}
+    \begin{definition}[Isomorphism]
+       An \textbf{isomorphism} in a category is a morphism $f: x \to y$ for which there exists a morphism $g: y \to x$ such that $gf = 1_x$ and $fg = 1_y$ ($g$ is a two-sided inverse). The objects $x$ and $y$ are said to be \textbf{isomorphic}, and we denote this $x \cong y$. 
+    \end{definition}
+    
+\end{frame}{}
+\begin{frame}{Definitions}
+    The following statements are equivalent
+    \begin{lemma}
+        \begin{enumerate}[(i)]
+            \item $f: x \to y$ is an isomorphism in $\mathbf{C}$
+            \item For all objects $c \in \mathbf{C}$, post-composition with $f$ defines a bijection
+                \begin{equation*}
+                    f_*: \mathbf{C}(c, x) \to \mathbf{C}(c, y)
+                \end{equation*}{}
+            \item For all objects $c \in \mathbf{C}$, pre-composition with $f$ defines a bijection
+                \begin{equation*}
+                    f^*: \mathbf{C}(y, c) \to \mathbf{C}(x, c)
+                \end{equation*}
+        \end{enumerate}
+    \end{lemma}
+\end{frame}
+
+\begin{frame}{Definitions}
+    \begin{definition}
+        a function $f: x \to y$ is...
+        \begin{enumerate}[i]
+            \item a \textbf{monomorphism} if for any parallel morphisms $h,k: w \to x, fh = fk$ implies that $h = k$.
+            
+            \item an \textbf{epimorphism} if for any parallel morphisms $h,k: y \to z, hf = kf$ implies $h = k$.
+        \end{enumerate}
+    \end{definition}
+
+\end{frame}{}
+\begin{frame}{Definitions}
+
+This looks foreign, but notice the following: 
+
+\begin{itemize}
+    \item When considering a monomorphism $f$, with $h, k: 1 \to x$, note that this is exactly the criteria for an injection, where $fh = fk$ exactly when $h = k$. ($h(*)$ of course, being a single element in $x$).
+    
+    \item Likewise, when considering an epimorphism $f$ with $h,k : y \to \{0,1\}$, then $hf = kf$ exactly when $h = k$.
+\end{itemize}{}
+    
+\end{frame}{}
+
+\begin{frame}{Definitions}
+    
+    Fun facts: $\{0,1\}$ is equivalent to $\{true, false\}$, the subobject classifier in the topos of $\mathbf{C}$s, which picks out the true or false values within. We can talk more about that after the talk...
+\end{frame}
+
+\begin{frame}{Definitions}
+
+    \begin{definition}[Functor]
+        A \textbf{functor} $F: \mathbf{C} \to \mathbf{D}$ between categories $\mathbf{C}$ and $\mathbf{D}$ consists of the following data: 
+        
+        \begin{itemize}
+            \item An object $Fc \in \mathbf{D}$ for each object $c \in \mathbf{C}$
+            \item A morphism $Ff: Fc \to Fc'$ in \textbf{D} for each morphism $f \in \mathbf{C}$
+        \end{itemize}{}
+    \end{definition}{}
+    
+Additionally, the following must be satisfied: 
+\begin{itemize}
+    \item For any composable pair $f, g$ in $\mathbf{C}$, $Fg \cdot Ff = F(g \cdot f)$
+    
+    \item For each object $c \in \mathbf{C}$, $F(1_c) = 1_{Fc}$     
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Definitions}
+
+So far, we have defined a functor which acts uniformly on arrows. However, there exist functors which have a tendency to take arrows in the source category and flip the direction of the arrows such that they point the opposite way in the target category i.e. for any such functor $F: \mathbf{C} \to \mathbf{D}$ and any objects $c, c'$ and morphism $f: c \to c'$ in \textbf{C}, we have $Ff: Fc' \to Fc$. Such functors are called \textbf{contravariant} functors, in contrast to their siblings which are called \textbf{covariant}.
+    
+\end{frame}
+
+\begin{frame}{Definitions}
+
+Instead of differentiating each functor by variance, note that every contravariant functor is a covariant functor $F: \mathbf{C}^{op} \to \mathbf{D}$. Instead of juggling variance, we will simply be sure to specify the variance of a functor by whether or not it maps from an opposite category.
+    
+\end{frame}
+
+\begin{frame}{Definitions}
+
+\begin{itemize}
+    \item The power set functor $P: \mathbf{C} \to \mathbf{C}$ that sends a set $A$ to its power set $PA = \{U : U \subset A\}$ and a function $f: A \to B$ to the direct image function $f_* : PA \to PB$ which sends $U \subset A$ to $f_*(U) \subset B$
+    
+    \item The contravariant power set functor $P: \mathbf{C}^{op} \to \mathbf{C}$ sends a set $A$ to its power set $PA$, and every function $f: A \to B$ to the inverse-image function $f^{-1}: PB \to PA$ such that $V \subset B \mapsto f^{-1}(V) \subset A$.
+\end{itemize}{}
+\end{frame}{}
+
+\begin{frame}{Definitions (cont'd)}
+
+\begin{itemize}
+    \item For any $c \in \mathbf{C}$ the covariant Hom-functor $\mathbf{C}(c, -): \mathbf{C} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set}, and morphisms to post-composition.
+    \item For any $c \in \mathbf{C}^{op}$ the contravariant Hom-functor $\mathbf{C}(-, c): \mathbf{C}^{op} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set} and morphisms to pre-composition. 
+\end{itemize}{}
+\end{frame}{}
+
+\section{Categorification}
+\subsection{}
+
+\begin{frame}{Back to the question}
+
+\begin{block}{Question}
+How do we prove something like the following? 
+\begin{equation*}
+     a \times (b + c) = (a \times b) + (a \times c)
+\end{equation*}
+\end{block}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    What is \textbf{(de-)categorification}?
+    
+    \begin{itemize}
+        \item A procedure by which set-theoretic concepts are expressed in terms of category theory (or vice-versa).
+    \end{itemize}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    Lets begin by categorifying arithmetic in the natural numbers. The first step to answering the question is to note some things about structure.
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    \begin{block}{Question}
+    Using what we've just learned, how would we prove something like the following? 
+        \begin{equation*}
+            a \times (b + c) = (a \times b) + (a \times c) \text{ for } a,b,c \in \mathbb{N}
+        \end{equation*}
+        \begin{itemize}
+            \item What purpose to the variables serve? 
+            \item What do we need in order to prove the statement? 
+        \end{itemize}{}
+    \end{block}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    \begin{block}{}
+        First thing to note is that the natural numbers $a, b, c$ denote the cardinality of finite sets: 
+        \begin{equation*}
+            a :\equiv |A| \qquad b :\equiv |B| \qquad c :\equiv |C|
+        \end{equation*}
+    \end{block}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    \begin{block}{}
+        \begin{itemize}
+            \item What is true when $a = b$?
+        \end{itemize}
+    \end{block}{}
+\end{frame}
+
+\begin{frame}{Categorification}
+    \begin{block}{}
+        \begin{itemize}
+            \item What is true when $a = b$?
+        \end{itemize}
+
+        \begin{equation*}
+            A \cong B
+        \end{equation*}
+    \end{block}
+    
+
+\end{frame}
+
+\begin{frame}{Categorification}
+    \begin{block}{}
+        \begin{itemize}
+            \item What is true when $a = b$?
+        \end{itemize}
+
+        \begin{equation*}
+            A \cong B
+        \end{equation*}
+    \end{block}
+    In fact, this equation asserts the following: $a = b$ if and only is $A \cong B$.
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    It's natural now, to also ask about the operations of $\times$ and $+$.
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    It's natural now, to also ask about the operations of $\times$ and $+$.
+    \\
+    \\Ideas?
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    Lets apply the same sort of categorification to the notion of $\times$ and +. 
+    
+\end{frame}{}
+
+\begin{frame}{Categorification}
+
+What are the sizes of the sets $A \times B$ and $B + C$?
+    
+\end{frame}{}
+
+\begin{frame}{Categorification}
+
+What are the sizes of the sets $A \times B$ and $B + C$?
+
+\\
+\\
+Q: What sets have size $a \times b$ and $b + c$?
+
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    \begin{itemize}
+        \item Note that by simple counting, the set $|A \times B| = a \times b$. We will refer to $\times$ as a \textit{product}.
+        \item Additionally, the disjoint union $B \sqcup C$ has $|B \sqcup C| = b + c$. We will refer to $+$ as a \textit{coproduct}. 
+    \end{itemize}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+
+Hence, 
+
+\begin{block}{}
+\begin{gather*}
+    A \times B \cong a \times b \\
+    B + C \cong b + c
+    \\
+\end{gather*}
+\end{block}
+
+We present this without a rigorous proof. Though, by counting, one can see that this is correct for sets. From now on, we'll call the Product of sets "$\times$", and the disjoint union "+".
+    
+\end{frame}
+
+\begin{frame}{Categorification}
+
+\begin{block}{}
+    Q: So what is the nature of this (de-)categorification? 
+
+    A: \begin{itemize}
+        \item Arithmetic in the naturals can be expressed in terms of natural isomorphisms of finite sets. These  natural isomorphism classes restrict to their own category $\mathbf{Fin_{Iso}}$ called of finite sets and bijections. 
+        \item $\mathbf{Fin_{Iso}}$ serves as the domain for the cardinality functor $|-|: \mathbf{Fin_{iso}} \to \mathbf{Set}$ which defines  a de-categorification procedure under the definition $a :\equiv |A|$ etc.
+    \end{itemize}{}
+\end{block}
+
+\end{frame}{}
+
+\begin{frame}{Categorification}
+
+    But additionally, one gets the following for free under a similar application of the theorems, which is nice, I guess:
+    
+    \begin{block}{}
+        \begin{equation*}
+            A^{B + C} \cong A^B \times A^C \qquad (A \times B)^C \cong A^C \times B^C \qquad (A^B)^C \cong A^{B \times C}
+        \end{equation*}{}
+    \end{block}
+    
+    Where the exponent $A^B$ denotes the set of functions from $A$ to $B$. (Can we produce a proof of that?)
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    Q: So what is the nature of (de-)categorification? 
+    
+    \\
+    
+    \\A: It's all a miserable pack of lies.
+\end{frame}{}
+
+\begin{frame}{Categorification}
+
+Summary: 
+
+\begin{block}{}
+\begin{itemize}
+    \item $A \times B \cong a \times b$, with $|A \times B| :\equiv a \times b$
+    \item $B + C \cong b + c$ and $|B + C| :\equiv b + c$
+    \item $\times$ refers to a \textit{product} which is the cartesian product of sets, and $+$ refers to a \textit{coproduct}, which is the disjoint union of sets
+    \item $(=)^{(-)}$ refers to $\mathbf{C}(-,=)$
+\end{itemize}{}
+
+\end{block}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    
+    So what does this mean?
+    
+    \begin{block}{}
+        $a \times (b + c) = (a \times b) + (a \times c) $
+    \end{block}{}
+\end{frame}{}
+
+\begin{frame}{Categorification}
+    
+    So what does mean?
+    
+    \begin{block}{}
+        $a \times (b + c) = (a \times b) + (a \times c) 
+        \\$
+    \end{block}{}
+ 
+ Answer:
+
+\begin{block}{}
+    $A \times (B + C) \cong (A \times B) + (A \times C)$
+\end{block}{}
+ 
+\end{frame}{}
+
+\section{Yoneda Lemma}
+\subsection{}
+\begin{frame}{Yoneda}
+    
+\begin{block}{A perspective:}
+    An objects is fully determined by its relationship to other objects.
+\end{block}{}
+
+
+\end{frame}
+
+\begin{frame}{Yoneda}
+    
+    
+\begin{block}{Translation:}
+    An object is fully determined by the morphisms and to and from the object.
+\end{block}{}
+
+\end{frame}
+
+\begin{frame}{Yoneda}
+    
+Q: But why is this important? Why do we care?
+\\
+\\
+A: To quote from a friend: 
+\begin{block}{}
+    "Most statements in elementary category theory can be proved using some variant statement of yoneda together with information about the category of sets"
+\end{block}{}
+
+\end{frame}
+\begin{frame}
+    
+    
+\begin{block}{The Yoneda Lemma}
+    $A$ and $B$ are isomorphic if and only if 
+    \begin{itemize}
+        \item For all $X$, $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$
+        
+        \item the isomorphisms $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ are \textit{natural} with respect to any function $f : X \to Y$.
+    \end{itemize}{}
+\end{block}{}
+
+
+
+\end{frame}
+\begin{frame}{Yoneda}
+    Q: But what does this mean? 
+    
+    \\
+    \\
+    A: The equivalent statements say the following: the objects $A$ and $B$ are isomorphic if and only if their relationships to any other $X$ are in correspondence.
+    
+\end{frame}
+\begin{frame}{Yoneda}
+    \begin{block}{The Yoneda Lemma}
+        $A$ and $B$ are isomorphic if and only if the sets $\mathbf{C}(A, X) $ and $\mathbf{C}(B, X)$ are naturally isomorphic.
+    \end{block}{}
+\end{frame}
+\begin{frame}{Yoneda}
+    \begin{block}{The Yoneda Lemma}
+        $A$ and $B$ are isomorphic if and only if the sets $\mathbf{C}(A, X) $ and $\mathbf{C}(B, X)$ are naturally isomorphic.
+    \end{block}{}
+    
+    \begin{proof}[Proof ($\Leftarrow$)]
+    
+        Let $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ for every $X$. Let $X = A$, and $X = B$. Then, we prove this using the following bijections and a diagram chase (see board): 
+        
+        \begin{equation*}
+            \mathbf{C}(A, A) \cong \mathbf{C}(B, A) \qquad \mathbf{C}(B, A) \cong \mathbf{C}(B, B)
+        \end{equation*}{}
+    \end{proof}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{The Yoneda Lemma}
+        $A$ and $B$ are isomorphic if and only if the sets $\mathbf{C}(A, X) $ and $\mathbf{C}(B, X)$ are naturally isomorphic.
+    \end{block}{}
+    
+    \begin{proof}[Proof ($\Rightarrow$)]
+    
+        Note that $\mathbf{C}(A,-)$ is a functor $\mathbf{C} \to \mathbf{C}$. Functors preserve isomorphisms. Hence, $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ for all $X$.
+
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Yoneda}
+    There was actually an even faster way to do this using the full/faithfulness of the hom-functor (fully faithful functors \textit{reflect} isomorphisms as well as preserve them i.e. $FA \cong FB \Rightarrow A \cong B$!), but we can put that away for another day
+\end{frame}
+
+\begin{frame}{Yoneda}
+
+Recap:
+
+\begin{block}{}
+    With a categorification, we understand that 
+    \begin{itemize}
+        \item $a \times (b + c) = (a \times b) + (a \times c)$ is the same as saying $A \times (B + C) \cong (A \times B) + (A \times C)$
+    \end{itemize}{}
+\end{block}{}
+    
+\end{frame}
+
+\begin{frame}{Yoneda}
+
+Recap:
+
+\begin{block}{}
+    With a categorification, we understand that 
+    \begin{itemize}
+        \item $a \times (b + c) = (a \times b) + (a \times c)$ is the same as saying $A \times (B + C) \cong (A \times B) + (A \times C)$
+    \end{itemize}{}
+\end{block}{}
+
+\begin{block}{}
+    And the Yoneda lemma helps us realize that this is equivalent to the following statement:
+    
+    \begin{itemize}
+        \item $\mathbf{C}(A \times (B + C), X) \cong \mathbf{C}((A \times B) + (A \times C), X)$ for all $X$.
+    \end{itemize}{}
+\end{block}{}
+    
+\end{frame}
+
+\section{Representability}
+
+\begin{frame}{Plan}
+    
+    If we want to prove the above, we should want to break it up and study each component on their own. First, we need to learn about the nature of products and coproducts.
+    
+\end{frame}
+\subsection{Universal Properties}
+
+\begin{frame}{Meditations on $\times$}
+    Suppose we wanted to talk about $\mathbf{C}(A \times B, X)$. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    Suppose we wanted to talk about $\mathbf{C}(A \times B, X)$. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    Q: What does a function $A \times B \to X$ look like? 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    Q: What does a function $A \times B \to X$ look like? 
+    \\
+    \\
+    A: Well, for one, we don't really have a definition for products yet! Lets define it. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    \begin{definition}{Product}
+        Let $\mathbf{C}$ be a category, and let $X, Y \in \mathbf{C}$. A product $P$ is an object of $\mathbf{C}$ together with functions $\pi_X: P \to X$ and $\pi_Y: P \to Y$ such that the following holds:  
+            \begin{itemize}
+                \item For any other $N \in \mathbf{C}$ and morphisms $f_X: N \to X$ and $f_Y : N \to Y$, we have that a unique, induced morphism $f : N \to P$ such that $f_X = \pi_Xf$ and $f_Y = \pi_Yf$. 
+            \end{itemize}
+    \end{definition}
+    $P$ is usually denoted $X \times Y$.
+\end{frame}{}
+
+\begin{frame}[fragile]
+    Or, more succinctly, the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$: 
+    
+\begin{center}
+    \begin{tikzcd}
+        & & X  \\
+        N 
+          \arrow[r, dashed, "f", description]
+          \arrow[urr, "f_Y", bend left] 
+          \arrow[drr, "f_X", bend right] & 
+        X \times Y \arrow[ur, "\pi_X"] \arrow[dr, "\pi_Y"] \\ & & 
+        Y
+    \end{tikzcd}{}
+\end{center}{}
+
+\end{frame}
+
+\begin{frame}{Meditations on $\times$}
+    So, back to the question.
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    A function $f: A \times B \to X$ contains the following data: 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+
+    A function $f: A \times B \to X$ contains the following data: 
+    \begin{block}{}
+    
+        \begin{itemize}
+            \item For $A \times B$, the function $f$ must specify an element $f(a,b) \in X$.
+            
+            \item Additionally, for any $a \in A$, the function $f(a,-)$ must specify a function $B \to X$ sending $b$ to $f(a,b)$
+        \end{itemize}{}
+    \end{block}{}
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    Thus, all that needed in order to define a function $A \times B \to X$ is the data that sends a $a \in A$ to the partial application of the function $f$ to form a function $A \to \mathbf{C}(B, X): a \mapsto f(a,-)$. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $\times$}
+    This should look familiar. \textit{Because it's currying}. The full statement of currying is the following:
+    
+\begin{block}{Currying}
+\begin{equation*}
+    \mathbf{C}(A \times B, C) \cong \mathbf{C}(A, \mathbf{C}(B, X))
+\end{equation*}{}
+\end{block}{}
+    
+\end{frame}{}
+
+\begin{frame}{Meditations on $+$}
+    Likewise, we can ask what the function $B + C \to X$ looks like. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $+$}
+    First, let us define coproducts. 
+\end{frame}{}
+
+\begin{frame}{Meditations on $+$}
+    \begin{definition}{Coproduct}
+        Let \mathbf{C} be a category and let $X, Y \in \mathbf{C}$. A \textit{coproduct} $C$ is an object of $\mathbf{C}$ together with functions $i_X : X \to C$ and $i_Y: Y \to C$ such that the following holds: 
+        
+        \begin{itemize}
+            \item For any other $N \in \mathbf{C}$, and morphisms $f_X: X \to N$ and $f_Y: Y \to N$, there is a unique, induced morphism $f: C \to N$ such that $f_X = fi_X$ and $f_Y = fi_Y$.
+        \end{itemize}{}
+    \end{definition}{}
+    
+    The coproduct of $C$ is generally denoted $X + Y$
+\end{frame}{}
+
+\begin{frame}[fragile]
+    Or, more succinctly, the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$: 
+    
+\begin{center}
+    \begin{tikzcd}
+        X  
+          \arrow[dr, "i_X"]
+          \arrow[drr, "f_X", bend left]  \\
+        & X + Y \arrow[r, dashed, "f", description] 
+        & N \\
+        Y 
+          \arrow[ur, "i_Y"]
+          \arrow[urr, "f_Y", bend right]
+    \end{tikzcd}{}
+\end{center}{}
+
+\end{frame}
+
+\begin{frame}{Meditations on $+$}
+    Note that all that's needed to define a function $f: B + C \to X$ is then to define a pair of functions $g: B \to X$ and $h: C \to X$ associating each $b \in B$ and $c \in C$ with an element of $X$. 
+
+\end{frame}
+
+\begin{frame}{Meditations on $+$}
+    Note that all that's needed to define a function $f: B + C \to X$ is then to define a pair of functions $g: B \to X$ and $h: C \to X$ associating each $b \in B$ and $c \in C$ with an element of $X$. 
+
+\\
+\\
+Thus, we obtain the following: 
+
+\begin{block}{Pairing}
+    \begin{equation*}
+        \mathbf{C}(B + C, X) \cong \mathbf{C}(B, X) \times \mathbf{C}(C, X)
+    \end{equation*}{}
+\end{block}{}
+\end{frame}
+
+\begin{frame}{Representability}
+    Note the duality of it all! The diagrams obtained in the previous slides are dual universal properties of the product and coproduct respectively.
+\end{frame}
+
+\begin{frame}{Representability}
+    Q: But what do we mean by "representability" here? 
+\end{frame}{}
+
+\begin{frame}{Representability}
+    Q: But what do we mean by "representability" here? 
+    \\
+    \\
+    A: We mean actions of the natural isomorphisms. 
+\end{frame}{}
+
+\begin{frame}{Representability}
+    In fact, we can make use of these natural isomorphisms because we have been working with things called representable functors!
+\end{frame}{}
+
+\begin{frame}{Representability}
+    \begin{definition}[Functor Category]
+        Let $\mathbf{C}$ and $\mathbf{D}$ be categories. A \textit{functor category}, denoted $[\mathbf{C}, \mathbf{D}]$, is defined to to be a category with functors $F: \mathbf{C} \to \mathbf{D}$ as objects and natural transformations as  morphisms. 
+    \end{definition}{}
+\end{frame}{}
+
+\begin{frame}{Representability}
+    \begin{definition}[Representable Functors]
+        A functor $F \in [\mathbf{C}, \mathbf{Set}]$ is called \textit{representable} if it is naturally isomorphic to a hom-functor $\mathbf{C}(A,-)$.
+    \end{definition}{}
+\end{frame}{}
+
+\begin{frame}{Representability}
+    This is interesting. Notice how similar it looks to the Yoneda lemma above!
+\end{frame}{}
+
+\begin{frame}{Representability}
+    Indeed, the definition of Yoneda can be refactored into a statement about the class of natural isomorphisms $\mathbf{C}(A,-) \cong F$.
+    
+    \begin{definition}[Yoneda Lemma]
+        Let $F \in [\mathbf{C}, \mathbf{Set}]$ be a representable functor, and let $A \in C$. The set of natural transformations $[\mathbf{C}, \mathbf{Set}](\mathbf{C}(A,-), F)$ is isomorphic to $FX$ for all $X \in \mathbf{C}$.
+
+    \end{definition}{}
+\end{frame}{}
+
+\begin{frame}{Representability}
+    Indeed, the statement actually holds for $F \in [\mathbf{C}^{op}, \mathbf{Set}]$ as well, only, since the variance is flipped, $FA \cong \mathbf{C}^{op}(-, X)$ is in correspondence.
+\end{frame}{}
+
+\begin{frame}{Representability}
+    It turns out that our work has been about the correspondence between represntable functors and natural isomorphisms all along!
+\end{frame}{}
+
+
+\section{The Proof}
+\subsection{}
+    
+\begin{frame}{Proof}
+    We can now prove the original statement: 
+    
+    \begin{block}{}
+        \begin{equation*}
+            a \times (b + c) = (a \times b) + (a \times c)
+        \end{equation*}{}
+    \end{block}{}
+\end{frame}{}
+
+\begin{frame}{Proof}
+    We can now prove the original statement: 
+    
+    \begin{block}{}
+        \begin{equation*}
+            a \times (b + c) = (a \times b) + (a \times c)
+        \end{equation*}{}
+    \end{block}{}
+\end{frame}{}
+
+\begin{frame}{Proof}
+ \begin{proof}{}
+ \begin{align*}
+     a \times (b + c) &\cong A \times (B + C) \qquad (categorification) \\
+                      &\cong \mathbf{C}(B + C, \mathbf{C}(A, X)) \qquad (swap + curry)\\
+                      &\cong \mathbf{C}(B, \mathbf{C}(A, X)))   \times \mathbf{C}(C, \mathbf{C}(A, X)) \qquad (pairing) \\
+                      &\cong \mathbf{C}(A\times B, X) \times \mathbf{C}(A\times C, X) \qquad (uncurry) \\
+                      &\cong \mathbf{C}((A \times B) + (A \times C), X) \qquad (unpair)\\
+                      &\cong (A \times B) + (A \times C) \qquad (yoneda) \\
+                      &\cong (a \times b) + (a \times c) \qquad (decategorification)
+ \end{align*}{}
+ \end{proof}
+\end{frame}{}
+\end{document}
