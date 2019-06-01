@@ -19,7 +19,7 @@
    \begin{shaded}\begin{prop}}
   {\end{prop}\end{shaded}}
 
-\title{Counting Polymorphic Type Inhabitants}
+\title{Isomorphic Reasoning: Counting Polymorphic Type Inhabitants}
 \author{Emily Pillmore, Alexander Konovalov}
 \date{May 2019}
 
@@ -38,8 +38,19 @@ But who are we and what do we do?
 \end{frame}
 
 \begin{frame}{Plan}
+    Q: We want to learn how to "count" types, but where do we start? 
+\end{frame}{}
 
-We want to prove the following for all $a, b, c \in \mathbb{N}$:
+\begin{frame}{Plan}
+    Q: We want to learn how to "count" types, but where do we start? 
+    \\
+    \\
+    A: Lets start small, in the category of sets, and simple arithmetic.
+\end{frame}{}
+
+\begin{frame}{Plan}
+
+As an example, lets prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{itemize}
     \item $a \times (b + c) \cong (a \times b) + (a \times c)$
@@ -49,7 +60,7 @@ We want to prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{frame}{Plan}
 
-We want to prove the following for all $a, b, c \in \mathbb{N}$:
+As an example, lets prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{itemize}
     \item $a \times (b + c) \cong (a \times b) + (a \times c)$
@@ -60,7 +71,7 @@ We want to prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{frame}{Plan}
 
-We want to prove the following for all $a, b, c \in \mathbb{N}$:
+As an example, lets prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{itemize}
     \item $a \times (b + c) \cong (a \times b) + (a \times c)$
@@ -70,7 +81,7 @@ We want to prove the following for all $a, b, c \in \mathbb{N}$:
 \end{frame}
 
 \begin{frame}{Plan}
-We want to prove the following for all $a, b, c \in \mathbb{N}$:
+As an example, lets prove the following for all $a, b, c \in \mathbb{N}$:
 
 \begin{itemize}
 
@@ -312,7 +323,7 @@ The data described in the previous slide defines a category in relation to itsel
 
 \begin{frame}{Definitions}
     \begin{definition}
-        a function $f: x \to y$ is...
+        a morphism $f: x \to y$ is...
         \begin{enumerate}[i]
             \item a \textbf{monomorphism} if for any parallel morphisms $h,k: w \to x, fh = fk$ implies that $h = k$.
             
@@ -371,11 +382,11 @@ Instead of differentiating each functor by variance, note that every contravaria
 
 \begin{frame}{Definitions}
 
-\begin{itemize}
-    \item The power set functor $P: \mathbf{C} \to \mathbf{C}$ that sends a set $A$ to its power set $PA = \{U : U \subset A\}$ and a function $f: A \to B$ to the direct image function $f_* : PA \to PB$ which sends $U \subset A$ to $f_*(U) \subset B$
-    
-    \item The contravariant power set functor $P: \mathbf{C}^{op} \to \mathbf{C}$ sends a set $A$ to its power set $PA$, and every function $f: A \to B$ to the inverse-image function $f^{-1}: PB \to PA$ such that $V \subset B \mapsto f^{-1}(V) \subset A$.
-\end{itemize}{}
+    \begin{itemize}
+        \item The power set functor $P: \mathbf{Set} \to \mathbf{Set}$ that sends a set $A$ to its power set $PA = \{U : U \subset A\}$ and a function $f: A \to B$ to the direct image function $f_* : PA \to PB$ which sends $U \subset A$ to $f_*(U) \subset B$
+        
+        \item The contravariant power set functor $P: \mathbf{Set}^{op} \to \mathbf{Set}$ sends a set $A$ to its power set $PA$, and every function $f: A \to B$ to the inverse-image function $f^{-1}: PB \to PA$ such that $V \subset B \mapsto f^{-1}(V) \subset A$.
+    \end{itemize}{}
 \end{frame}{}
 
 \begin{frame}{Definitions (cont'd)}
@@ -384,6 +395,110 @@ Instead of differentiating each functor by variance, note that every contravaria
     \item For any $c \in \mathbf{C}$ the covariant Hom-functor $\mathbf{C}(c, -): \mathbf{C} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set}, and morphisms to post-composition.
     \item For any $c \in \mathbf{C}^{op}$ the contravariant Hom-functor $\mathbf{C}(-, c): \mathbf{C}^{op} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set} and morphisms to pre-composition. 
 \end{itemize}{}
+\end{frame}{}
+
+\begin{frame}[fragile]
+    
+    \begin{definition}[Natural Transformation]
+        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data: 
+        
+        \begin{itemize}
+            \item To each $c \in C$, a component morphism $\alpha_c : Fc \to Gc$ exists such that the following diagram commutes or any $c, c' \in \mathbf{C}$ and $f: c \to c'$:
+            \begin{center}
+                \begin{tikzcd}
+                    Fc 
+                      \ar[r, "\alpha_c"]
+                      \ar[d, "Ff"]
+                    & Gc \ar[d, "Gf"] \\
+                    Fc' \ar[r, "\alpha_{c'}"]
+                    & Gc'
+            \end{tikzcd}{}
+            \end{center}{}
+        \end{itemize}{}
+        
+    \end{definition}{}
+ 
+ There is such a thing as a \textbf{natural isomorphism} as well. How might you define one?
+\end{frame}
+
+\begin{frame}[fragile]
+    
+    \begin{definition}[Natural Transformation]
+        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data: 
+        
+        \begin{itemize}
+            \item To each $c \in C$, a component morphism $\alpha_c : Fc \to Gc$ exists such that the following diagram commutes or any $c, c' \in \mathbf{C}$ and $f: c \to c'$:
+            \begin{center}
+                \begin{tikzcd}
+                    Fc 
+                      \ar[r, "\alpha_c"]
+                      \ar[d, "Ff"]
+                    & Gc \ar[d, "Gf"] \\
+                    Fc' \ar[r, "\alpha_{c'}"]
+                    & Gc'
+            \end{tikzcd}{}
+            \end{center}{}
+        \end{itemize}{}
+        
+    \end{definition}{}
+    
+    \begin{definition}[natural isomorphism]
+      A \textbf{natural isomorphism} is a natural isomorphism where each component is an isomorphism. We'll denote them as $\alpha: F \cong G$.
+    \end{definition}{}
+\end{frame}
+
+\begin{frame}{Definitions}
+
+In effect, this means that the following naturality condition holds for all $c, c' \in \mathbf{C}$ for a given transformation $\alpha: F \Rightarrow G$: 
+
+\begin{center}
+    \begin{equation*}
+        \alpha_{c'}F = G \alpha_c
+    \end{equation*}{}
+\end{center}{}
+    \\
+That's it!
+\end{frame}{}
+
+\begin{frame}[fragile]
+
+Often, we'll just denote this data with either  $\alpha: F \Rightarrow G$, or diagrammatically with 
+
+\begin{center}
+
+    \tikzset{dbl/.style={double,
+                     double equal sign distance,
+                     -implies,
+                     shorten >=10pt,
+                     shorten <=10pt}}
+                     
+    \begin{tikzcd}
+        C 
+            \ar[rr, "F"{name=F, above}, bend left=40]
+            \ar[rr, "G"{name=G, below}, bend right=40]
+        & & D \ar[Rightarrow, from=F, to=G, shorten <=10pt,shorten >=10pt, "\alpha"]
+    \end{tikzcd}{}
+\end{center}{}
+    
+
+\end{frame}
+
+\begin{frame}{Definitions}
+    This is called a \textit{naturality} condition. To say that $\alpha$ is \textit{natural} in $c$ is to say there exists a component morphism $\alpha_c$ providing a relationship between $Fc$ and $Gc$.
+\end{frame}{}
+
+\begin{frame}{Definitions}
+    Natural transformations are ubiquitous. In a sense, they form "analogies between relationships". If one takes the perspective that functors define an intimate relationship between structures, then natural transformations provide a way of relating those relationships.
+\end{frame}
+
+\begin{frame}{Definitions}
+    Examples of natural transformations appear everywhere in the wild. Here are a few: 
+    
+    \begin{itemize}
+        \item There is a natural transformation $\eta_A : 1_{\mathbf{Set}} \Rightarrow P$ from the identity to the covariant power set functor whose components $\eta_A : A \to PA$ are functions that carry $a \in A$ to ${a} \in PA$.
+        
+        \item The open and closed subset functors are naturally isomorphic when regarded as functors $\mathcal{O},\mathcal{C}: \mathbf{Top}^{op} \to \mathbf{Set}$. The components are defined by taking an open subset of $X$ to its complement, which is closed. Thus, the "naturality" condition asserts that forming complements commutes with taking preimages (i.e. $f^{-1}(V)^c \cong f^{-1}(V^c)$).
+    \end{itemize}{}
 \end{frame}{}
 
 \section{Categorification}
@@ -452,7 +567,6 @@ How do we prove something like the following?
         \end{equation*}
     \end{block}
     
-
 \end{frame}
 
 \begin{frame}{Categorification}
@@ -466,28 +580,28 @@ How do we prove something like the following?
         \end{equation*}
     \end{block}
     In fact, this equation asserts the following: $a = b$ if and only is $A \cong B$.
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
     It's natural now, to also ask about the operations of $\times$ and $+$.
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
     It's natural now, to also ask about the operations of $\times$ and $+$.
     \\
     \\Ideas?
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
     Lets apply the same sort of categorification to the notion of $\times$ and +. 
     
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
 
 What are the sizes of the sets $A \times B$ and $B + C$?
     
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
 
@@ -735,10 +849,6 @@ Recap:
 \end{frame}{}
 
 \begin{frame}{Meditations on $\times$}
-    Suppose we wanted to talk about $\mathbf{C}(A \times B, X)$. 
-\end{frame}{}
-
-\begin{frame}{Meditations on $\times$}
     Q: What does a function $A \times B \to X$ look like? 
 \end{frame}{}
 
@@ -908,17 +1018,16 @@ Thus, we obtain the following:
     Indeed, the definition of Yoneda can be refactored into a statement about the class of natural isomorphisms $\mathbf{C}(A,-) \cong F$.
     
     \begin{definition}[Yoneda Lemma]
-        Let $F \in [\mathbf{C}, \mathbf{Set}]$ be a representable functor, and let $A \in C$. The set of natural transformations $[\mathbf{C}, \mathbf{Set}](\mathbf{C}(A,-), F)$ is isomorphic to $FX$ for all $X \in \mathbf{C}$.
-
+        Let $F \in [\mathbf{C}, \mathbf{Set}]$ be a representable functor, and let $A \in C$. The set of natural transformations $[\mathbf{C}, \mathbf{Set}](\mathbf{C}(A,-), F)$ is in bijection with $FA$ for all $A \in \mathbf{C}$. This bijection associates a morphism (natural transformation) $\alpha: \mathbf{C}(A,-) \Rightarrow F$ to the identity $\alpha(1_A) \in FA$
     \end{definition}{}
 \end{frame}{}
 
 \begin{frame}{Representability}
-    Indeed, the statement actually holds for $F \in [\mathbf{C}^{op}, \mathbf{Set}]$ as well, only, since the variance is flipped, $FA \cong \mathbf{C}^{op}(-, X)$ is in correspondence.
+    Indeed, the statement actually holds for $F \in [\mathbf{C}^{op}, \mathbf{Set}]$ as well, only, since the variance is flipped, $FX \cong \mathbf{C}^{op}(-, X)$ is in correspondence.
 \end{frame}{}
 
 \begin{frame}{Representability}
-    It turns out that our work has been about the correspondence between represntable functors and natural isomorphisms all along!
+    It turns out that our work has been about the correspondence between representable functors and natural isomorphisms all along!
 \end{frame}{}
 
 
@@ -949,7 +1058,8 @@ Thus, we obtain the following:
  \begin{proof}{}
  \begin{align*}
      a \times (b + c) &\cong A \times (B + C) \qquad (categorification) \\
-                      &\cong \mathbf{C}(B + C, \mathbf{C}(A, X)) \qquad (swap + curry)\\
+                      &\cong \mathbf{C}((B + C) \times A, X) \qquad (swap + yoneda) \\
+                      &\cong \mathbf{C}(B + C, \mathbf{C}(A, X)) \qquad (curry)\\
                       &\cong \mathbf{C}(B, \mathbf{C}(A, X)))   \times \mathbf{C}(C, \mathbf{C}(A, X)) \qquad (pairing) \\
                       &\cong \mathbf{C}(A\times B, X) \times \mathbf{C}(A\times C, X) \qquad (uncurry) \\
                       &\cong \mathbf{C}((A \times B) + (A \times C), X) \qquad (unpair)\\
@@ -957,5 +1067,35 @@ Thus, we obtain the following:
                       &\cong (a \times b) + (a \times c) \qquad (decategorification)
  \end{align*}{}
  \end{proof}
+\end{frame}{}
+
+\section{Optional}
+\subsection{}
+
+\begin{frame}{Adjunctions}
+    This section is optional, but a wonderful insight into the nature of duality and the previously discussed theory. 
+\end{frame}
+
+\begin{frame}{Adjunctions}
+    This section is optional, but a wonderful insight into the nature of duality and the previously discussed theory. 
+\end{frame}
+
+\begin{frame}{Adjunctions}
+    \textit{"Adjoint Functors arise everywhere" - Saunders MacLane} 
+\end{frame}
+
+\begin{frame}{Adjunctions}
+    In fact, they are more than pertinent to the study of functional programming, as it is a classic theorem of adjoint functors (also called adjunctions) that every adjunction gives rise to a monad/comonad pair. 
+\end{frame}
+
+\begin{frame}{Adjunctions}
+    Lets begin with some definitions, and build towards adjunctions. 
+\end{frame}
+
+\begin{frame}{Adjunctions}
+   
+   \begin{definition}[Diagram]
+   
+   \end{definition}{} 
 \end{frame}{}
 \end{document}
