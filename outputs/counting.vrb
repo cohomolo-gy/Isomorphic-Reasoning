@@ -1,0 +1,16 @@
+We can certainly show it explicitly:
+
+\begin{block}{}
+
+\begin{center}
+	\begin{lstlisting}[language=Haskell]
+		to :: Either () () -> Bool
+		to (Right ()) = True
+		to (Left ())  = False
+
+		from :: Bool -> Either () ()
+		from True = Right ()
+		from False = Left ()
+	\end{lstlisting}
+\end{center}
+\end{block}

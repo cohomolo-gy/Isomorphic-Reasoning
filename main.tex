@@ -1,7 +1,5 @@
 \documentclass[tikz]{beamer}
 
-
-
 \usepackage{eucal,mathrsfs}
 \usepackage{tikz-cd}
 \usepackage{amsfonts}
@@ -14,6 +12,7 @@
 \newtheorem*{prop}{Proposition \propnumber}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
+
 \newenvironment{propc}[1]
   {\renewcommand{\propnumber}{#1}%
    \begin{shaded}\begin{prop}}
@@ -1065,8 +1064,9 @@ Thus, we obtain the following:
                       &\cong \mathbf{C}(A\times B, X) \times \mathbf{C}(A\times C, X) \qquad (uncurry) \\
                       &\cong \mathbf{C}((A \times B) + (A \times C), X) \qquad (unpair)\\
                       &\cong (A \times B) + (A \times C) \qquad (yoneda) \\
-                      &\cong (a \times b) + (a \times c) \qquad (decategorification)
+                      &\cong (a \times b) + (a \times c) \qquad (de-categorification)
  \end{align*}{}
  \end{proof}
-\end{frame}{}
+\end{frame}
+
 \end{document}

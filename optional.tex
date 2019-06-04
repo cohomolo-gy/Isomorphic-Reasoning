@@ -114,18 +114,64 @@ Let $U: \cat{Mon} \to \cat{Set}$ be a forgetful functor, nad let $MS$ be the fre
 Let $J: \cat{J} \to \cat{C}$ be a diagram of shape $\cat{J}$ in $\cat{C}$. A \textbf{cone} in $\cat{C}$ is an object $N \in \cat{C}$ together with a family $\beta_X: N \to JX$ such that for every morphism $Jj: JX \to JY$ we have $\beta_Y = Jj \circ \beta_X$. A \textbf{limit} is a terminal cone $(L, \phi)$ inducing a unique $f: N \to L$ such that all $\psi_{(-)}$ factor through $(L, \phi)$. I.e. $\beta_X = \phi_X \circ f$. Diagrammatically, 
 
 \begin{center}
-    \begin{tikzcd}
-        & N \ar[d, "f", dashed, description] 
-            \ar[dl, "\beta_X", bend left=40]
-            \ar[dr, "\beta_Y", bend right=40] \\
-        & L \ar
-            \ar[dl, "\phi_X", bend left]
-            \ar[dr, "\phi_Y", bend right] \\  
-        JX \ar[r, "Jj"]
-        & & JY
-    \end{tikzcd}{}
-\end{center}{}
+\begin{tikzcd}[row sep = large]
+& N \arrow[d, "f", dashed, description] \arrow[ddr, bend left,"\beta_Y"]   \arrow[ddl, bend right,"\beta_X",swap] & \\
+& L \arrow[dr, "\phi_Y"]  \arrow[dl,swap, "\phi_X"] & \\
+JX  \arrow[rr,swap, "Jj"] & & JY
+\end{tikzcd}
+\end{center}
     
+\end{frame}
+
+\begin{frame}{Limits and Colimits}
+A \textbf{colimit} is defined dually, in a  similar way, with the arrows reversed. 
+\end{frame}
+
+\begin{frame}{Limits and Colimits}
+Notice how familiar those diagrams look?
+\end{frame}
+
+\begin{frame}{Limits and Colimits}
+This is because products and coproducts as previously defined are limits and colimits themselves!
+\end{frame}
+
+\begin{frame}{Limits and Colimits}
+This is because products and coproducts as previously defined are limits and colimits themselves! In fact, limits and colimits define functors $\cat{C}^{\cat{J}} \to \cat{C}$. 
+\end{frame}
+
+
+\begin{frame}{Limits and Colimits}
+Define the diagonal functor$ \Delta : \cat{C} \to \cat{C}^{\cat{J}}$ taking objects $c \in \cat{C}$ to the constant $\cat{J}$-shaped diagram. If $\cat{C}$ is a locally small category, then $\cat{C}$ preserves all limits (colimits, resp.) if and only if $\Delta$ admits a right adjoint (left adjoint, resp.). 
+\end{frame}
+
+\begin{frame}{Examples}
+
+Let $\cat{C}$ be $\cat{Set}$ or its subcategory $\cat{Fin}$. Note that there exists an adjunction $A \times - \dashv (-)^A$ for any $A$. For any sets $A, B, C, D$, the following natural isomorphisms hold: 
+
+\begin{center}
+\begin{equation*}
+A \times (B + C) \cong (A \times B) + (A \times C) \qquad (B \times C)^A \cong B^A \times C^A
+\end{equation*}
+
+\begin{equation*}
+A^{B + C} \cong A^B \times A^C
+\end{equation*}
+\end{center}
+
+
+\end{frame}
+
+\begin{frame}{Limits and Colimits}
+\begin{proof}
+The left adjoint $A \times -$ preserves the coproduct $B + C$, the right adjoint $(-)^A$ preserves the product $B \times C$, and the functor $A^{(-)}: \cat{Set}^{op} \to \cat{Set}$ is mutually right-adjoint to itself, and so carries coproducts in $\cat{Set}$ to products in $\cat{Set}$. The laws of cardinal arithmetic follow by applying the cardinality functor $|-|: Fin_{Iso} \to \cat{Fin}$
+
+\end{proof}
+\end{frame}
+
+
+\begin{frame}{Bonus}
+
+Bonus: Functors of the form $\cat{D}^{op} \times \cat{C} \to \cat{Set}$ are known as \textit{profunctors}. Profunctors define proof-relevant relations between objects in (possibly) heterogeneous categories and the sets of morphisms between objects in $\cat{C}^{op} \times \cat{D}$ are called \textit{heteromorphisms}. Adjunctions are natural isomorphisms of profunctors which establishes a correspondence between heteromorphisms in an opposite category, and heteromorphisms in a standard category. Taking this perspective that profunctors denote relations between objects imples that adjunctions encode an isomorphism between dual relations! Very cool. Thanks. 
 \end{frame}
 
 \end{document}
