@@ -1,22 +1,20 @@
 \documentclass[tikz]{beamer}
 
-\usepackage{eucal,mathrsfs}
-\usepackage{tikz-cd}
-\usepackage{amsfonts}
+\usepackage{hyperref}
 \usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{tikz-cd}
+
   
 \usetheme{Darmstadt}
 \colorlet{shadecolor}{gray!15}
 
-\newcommand{\propnumber}{} % initialize
-\newtheorem*{prop}{Proposition \propnumber}
+\newtheorem{prop}{Proposition}
+
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
-\newenvironment{propc}[1]
-  {\renewcommand{\propnumber}{#1}%
-   \begin{shaded}\begin{prop}}
-  {\end{prop}\end{shaded}}
 
+\newcommand\dinat{\overset{\cdot\cdot}\to}
 \newcommand{\cat}[1]{\mathbf{#1}}
 \newcommand{\homf}[2]{[\cat{#1}, \cat{#2}]}
 
@@ -32,6 +30,28 @@
 
 \begin{frame}{Adjunctions}
     This section is optional, but a wonderful insight into the nature of duality and the previously discussed theory. 
+\end{frame}
+
+\begin{frame}[fragile]{Goals}
+
+Here's a sneak peek: 
+
+\begin{prop}[LAPC, RAPL]
+    Any category $\mathbf{C}$ admits all limits and colimits indexed by a small category $\mathbf{J}$ if and only if the constant diagram functor $\Delta : \mathbf{C} \rightarrow \mathbf{C}^{\mathbf{J}}$ has a right and left adjoint \textit{colim} $\dashv \Delta \dashv$ \textit{lim}:
+   
+ \end{prop}
+\begin{equation*}
+\begin{tikzcd}
+    \mathbf{C} 
+        \arrow[r, "\Delta" description, line sep] &
+    \mathbf{C^{J}}
+        \arrow[l, bend left=35, "colim"{name=colim, below}]
+        \arrow[l, bend right=35, "lim"{name="lim", above}]
+\end{tikzcd}
+\end{equation*}
+
+When these functors exist, we can prove our arithmetic!
+
 \end{frame}
 
 \begin{frame}{Adjunctions}
@@ -163,7 +183,7 @@ A^{B + C} \cong A^B \times A^C
 
 \begin{frame}{Limits and Colimits}
 \begin{proof}
-The left adjoint $A \times -$ preserves the coproduct $B + C$, the right adjoint $(-)^A$ preserves the product $B \times C$, and the functor $A^{(-)}: \cat{Set}^{op} \to \cat{Set}$ is mutually right-adjoint to itself, and so carries coproducts in $\cat{Set}$ to products in $\cat{Set}$. The laws of cardinal arithmetic follow by applying the cardinality functor $|-|: Fin_{Iso} \to \cat{Fin}$
+The left adjoint $A \times -$ preserves the coproduct $B + C$, the right adjoint $(-)^A$ preserves the product $B \times C$, and the functor $A^{(-)}: \cat{Set}^{op} \to \cat{Set}$ is mutually right-adjoint to itself, and so carries coproducts in $\cat{Set}$ to products in $\cat{Set}$. The laws of cardinal arithmetic follow by applying the cardinality functor $|-|: \cat{Fin_{Iso}} \to \cat{Fin}$
 
 \end{proof}
 \end{frame}
@@ -173,5 +193,6 @@ The left adjoint $A \times -$ preserves the coproduct $B + C$, the right adjoint
 
 Bonus: Functors of the form $\cat{D}^{op} \times \cat{C} \to \cat{Set}$ are known as \textit{profunctors}. Profunctors define proof-relevant relations between objects in (possibly) heterogeneous categories and the sets of morphisms between objects in $\cat{C}^{op} \times \cat{D}$ are called \textit{heteromorphisms}. Adjunctions are natural isomorphisms of profunctors which establishes a correspondence between heteromorphisms in an opposite category, and heteromorphisms in a standard category. Taking this perspective that profunctors denote relations between objects imples that adjunctions encode an isomorphism between dual relations! Very cool. Thanks. 
 \end{frame}
+
 
 \end{document}
