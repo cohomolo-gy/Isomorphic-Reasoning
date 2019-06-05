@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kr}{data} \PYG{k+kt}{Expr} \PYG{o+ow}{=} \PYG{k+kt}{Lit} \PYG{k+kt}{Int} \PYG{o}{|} \PYG{k+kt}{Add} \PYG{k+kt}{Expr} \PYG{k+kt}{Expr} \PYG{o}{|} \PYG{k+kt}{Pow} \PYG{k+kt}{Expr} \PYG{k+kt}{Expr}
+
+\PYG{n+nf}{first}  \PYG{o+ow}{=} \PYG{k+kt}{Lit} \PYG{l+m+mi}{1729}
+\PYG{n+nf}{second} \PYG{o+ow}{=} \PYG{k+kt}{Add} \PYG{p}{(}\PYG{k+kt}{Pow} \PYG{p}{(}\PYG{k+kt}{Lit} \PYG{l+m+mi}{12}\PYG{p}{)} \PYG{p}{(}\PYG{k+kt}{Lit} \PYG{l+m+mi}{3}\PYG{p}{))} \PYG{p}{(}\PYG{k+kt}{Lit} \PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

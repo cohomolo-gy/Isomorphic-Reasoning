@@ -1,0 +1,15 @@
+Or, more succinctly, the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$:
+
+\begin{center}
+    \begin{tikzcd}
+        X
+          \arrow[dr, "i_X"]
+          \arrow[drr, "f_X", bend left]  \\
+        & X + Y \arrow[r, dashed, "f", description]
+        & N \\
+        Y
+          \arrow[ur, "i_Y"]
+          \arrow[urr, "f_Y", bend right]
+    \end{tikzcd}{}
+\end{center}{}
+

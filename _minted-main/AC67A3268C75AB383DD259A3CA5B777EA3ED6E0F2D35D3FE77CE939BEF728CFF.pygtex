@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{x}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} uncurrying}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{x}\PYG{o}{.} \PYG{n}{x} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} () \PYGZhy{}\PYGZgt{} x $\cong$ x}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{x}\PYG{o}{.} \PYG{p}{(}\PYG{n+nb}{()} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype F a x = a \PYGZhy{}\PYGZgt{} a}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{k+kt}{F} \PYG{n}{a} \PYG{n+nb}{()}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} reusing the proof above}
+    \PYG{esc}{$\cong$} \PYG{n+nb}{()}
+\end{Verbatim}

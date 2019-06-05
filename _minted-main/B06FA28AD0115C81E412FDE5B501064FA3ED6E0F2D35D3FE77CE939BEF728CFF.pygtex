@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2} \PYG{esc}{$\times$} \PYG{n}{b}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2} \PYG{esc}{$\times$} \PYG{n}{b}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2} \PYG{esc}{$\times$} \PYG{n}{b}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype F a x = (a \PYGZhy{}\PYGZgt{} 0) \PYGZhy{}\PYGZgt{} 2 |$\times$| x}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{k+kt}{F} \PYG{n}{a} \PYG{l+m+mi}{1}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2} \PYG{esc}{$\times$} \PYG{l+m+mi}{1}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Add (0 \PYGZhy{}\PYGZgt{} a) $\cong$ 1}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{0} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype G x = (x \PYGZhy{}\PYGZgt{} 0) \PYGZhy{}\PYGZgt{} 2}
+    \PYG{esc}{$\cong$} \PYG{k+kt}{G} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{l+m+mi}{0} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{2}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{2}
+\end{Verbatim}

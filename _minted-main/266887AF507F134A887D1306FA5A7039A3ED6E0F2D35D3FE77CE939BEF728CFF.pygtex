@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} using pairing}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype F a x = a \PYGZhy{}\PYGZgt{} x}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{k+kt}{F} \PYG{n}{a} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} a $\cong$ 1 \PYGZhy{}\PYGZgt{} a}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype G x = x + 1}
+    \PYG{esc}{$\cong$} \PYG{k+kt}{G} \PYG{l+m+mi}{1}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{1} \PYG{o}{+} \PYG{l+m+mi}{1}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{2}
+\end{Verbatim}

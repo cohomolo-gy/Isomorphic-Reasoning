@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{rightUnitP}  \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n+nb}{()}\PYG{p}{)} \PYG{n}{a}
+\PYG{n+nf}{leftUnitP}   \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nb}{()}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{n}{a}
+\PYG{n+nf}{associateP}  \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{((}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{),} \PYG{n}{c}\PYG{p}{)} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{))}
+\end{Verbatim}

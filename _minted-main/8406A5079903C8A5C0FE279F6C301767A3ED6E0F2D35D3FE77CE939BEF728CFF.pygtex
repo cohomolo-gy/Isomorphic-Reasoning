@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n+nf}{fromTo} \PYG{o+ow}{::} \PYG{k+kt}{Functor} \PYG{n}{f} \PYG{o+ow}{=\PYGZgt{}} \PYG{p}{(}\PYG{n}{forall} \PYG{n}{x}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}}
+                       \PYG{p}{(}\PYG{n}{forall} \PYG{n}{x}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{x}\PYG{p}{)}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n}{from} \PYG{o}{.} \PYG{n}{to}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{fa} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{g} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{n}{g} \PYG{n}{fa}\PYG{p}{)} \PYG{o}{.}
+         \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{id}\PYG{p}{)}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{g} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{n}{g} \PYG{p}{(}\PYG{n}{f} \PYG{n}{id}\PYG{p}{)}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Using parametricity}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{g} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{p}{(}\PYG{n}{g} \PYG{o}{.} \PYG{n}{id}\PYG{p}{)}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Function composition}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{g} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{g}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Eta reduction}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n}{id}
+\end{Verbatim}

@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{leftUnitP} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nb}{()}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{n}{a}
+\PYG{n+nf}{leftUnitP} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{p}{(}\PYG{n+nb}{()}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)}
+                \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n+nb}{()}\PYG{p}{,} \PYG{n}{a}\PYG{p}{))}
+
+\PYG{n+nf}{commuteP} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)}
+\PYG{n+nf}{commuteP} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{a}\PYG{p}{))}
+               \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{))}
+
+\PYG{n+nf}{associateP} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{((}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{),} \PYG{n}{c}\PYG{p}{)} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{))}
+\PYG{n+nf}{associateP} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{p}{((}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{),} \PYG{n}{c}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{)))}
+                 \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{))} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{((}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{),} \PYG{n}{c}\PYG{p}{))}
+\end{Verbatim}

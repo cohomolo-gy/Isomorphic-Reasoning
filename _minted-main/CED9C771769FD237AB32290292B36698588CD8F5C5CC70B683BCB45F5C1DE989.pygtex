@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kr}{data} \PYG{k+kt}{Iso} \PYG{n}{a} \PYG{n}{b} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{\PYGZob{}}
+  \PYG{n}{to}   \PYG{o+ow}{::} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}
+  \PYG{n}{from} \PYG{o+ow}{::} \PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}
+  \PYG{c+c1}{\PYGZhy{}\PYGZhy{} fromTo :: (x :: a) \PYGZhy{}\PYGZgt{} (from . to) x = x}
+  \PYG{c+c1}{\PYGZhy{}\PYGZhy{} toFrom :: (x :: b) \PYGZhy{}\PYGZgt{} (to . from) x = x}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

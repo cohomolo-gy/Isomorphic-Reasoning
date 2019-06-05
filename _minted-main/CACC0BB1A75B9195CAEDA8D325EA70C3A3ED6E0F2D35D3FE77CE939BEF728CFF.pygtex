@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n+nf}{leftUnitP}  \PYG{o+ow}{::} \PYG{p}{(}\PYG{esc}{$1$} \PYG{esc}{$\times$} \PYG{n}{a}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{n}{a}
+\PYG{n+nf}{commuteP}   \PYG{o+ow}{::} \PYG{p}{(}\PYG{n}{a} \PYG{esc}{$\times$} \PYG{n}{b}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{n}{b} \PYG{esc}{$\times$} \PYG{n}{a}\PYG{p}{)}
+\PYG{n+nf}{associateP} \PYG{o+ow}{::} \PYG{p}{(}\PYG{p}{(}\PYG{n}{a} \PYG{esc}{$\times$} \PYG{n}{b}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{n}{c}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{n}{a} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{n}{b} \PYG{esc}{$\times$} \PYG{n}{c}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nf}{leftUnitC}  \PYG{o+ow}{::} \PYG{p}{(}\PYG{esc}{$0$} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{n}{a}
+\PYG{n+nf}{commuteC}   \PYG{o+ow}{::} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{n}{b}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{n}{b} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)}
+\PYG{n+nf}{associateC} \PYG{o+ow}{::} \PYG{p}{(}\PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{n}{b}\PYG{p}{)} \PYG{o}{+} \PYG{n}{c}\PYG{p}{)} \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{p}{(}\PYG{n}{b} \PYG{o}{+} \PYG{n}{c}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nf}{currying}   \PYG{o+ow}{::} \PYG{esc}{$c^{a \times b}$} \PYG{esc}{$\cong$} \PYG{esc}{$(c^b)^a$}
+\PYG{n+nf}{leftUnitF}  \PYG{o+ow}{::} \PYG{esc}{$a^1$} \PYG{esc}{$\cong$} \PYG{n}{a}
+\PYG{n+nf}{rightUnitF} \PYG{o+ow}{::} \PYG{esc}{$1^a$} \PYG{esc}{$\cong$} \PYG{esc}{$1$}
+\end{Verbatim}

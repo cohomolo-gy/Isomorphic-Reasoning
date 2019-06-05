@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n+nf}{to} \PYG{o+ow}{::} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Either} \PYG{p}{(}\PYG{n}{f} \PYG{n}{x}\PYG{p}{)} \PYG{p}{(}\PYG{n}{g} \PYG{n}{x}\PYG{p}{)}\PYG{p}{)}
+   \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Either} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{x}\PYG{p}{)} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{g} \PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{} Using parametricity here:}
+\PYG{n+nf}{to} \PYG{n}{e} \PYG{o+ow}{=} \PYG{k+kr}{case} \PYG{p}{(}\PYG{n}{e} \PYG{n+nb}{()}\PYG{p}{)} \PYG{k+kr}{of}
+  \PYG{k+kt}{Left}  \PYG{n}{fx} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Left}  \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{t} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{unsafeCoerce} \PYG{n}{fx} \PYG{o+ow}{::} \PYG{n}{f} \PYG{n}{t}\PYG{p}{)}\PYG{p}{)}
+  \PYG{k+kt}{Right} \PYG{n}{gx} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Right} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{t} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{unsafeCoerce} \PYG{n}{gx} \PYG{o+ow}{::} \PYG{n}{f} \PYG{n}{t}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n+nf}{from} \PYG{o+ow}{::} \PYG{k+kt}{Either} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{x}\PYG{p}{)} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{g} \PYG{n}{x}\PYG{p}{)}
+     \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{p}{(}\PYG{n}{x} \PYG{o+ow}{::} \PYG{o}{*}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Either} \PYG{p}{(}\PYG{n}{f} \PYG{n}{x}\PYG{p}{)} \PYG{p}{(}\PYG{n}{g} \PYG{n}{x}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nf}{from} \PYG{p}{(}\PYG{k+kt}{Left} \PYG{n}{fx}\PYG{p}{)}  \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{t} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Left}  \PYG{p}{(}\PYG{n}{fx} \PYG{n}{t}\PYG{p}{)}
+\PYG{n+nf}{from} \PYG{p}{(}\PYG{k+kt}{Right} \PYG{n}{gx}\PYG{p}{)} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{t} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Right} \PYG{p}{(}\PYG{n}{gx} \PYG{n}{t}\PYG{p}{)}
+\end{Verbatim}

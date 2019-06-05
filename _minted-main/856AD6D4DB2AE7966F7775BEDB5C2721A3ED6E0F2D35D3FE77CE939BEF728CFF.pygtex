@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{0} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{1}
+\end{Verbatim}

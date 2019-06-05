@@ -1,0 +1,8 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Preliminaries}{39}{0}{2}
+\beamer@sectionintoc {3}{Categorification}{62}{0}{3}
+\beamer@sectionintoc {4}{Yoneda Lemma}{81}{0}{4}
+\beamer@sectionintoc {5}{Representability}{90}{0}{5}
+\beamer@subsectionintoc {5}{1}{Universal Properties}{128}{0}{5}
+\beamer@sectionintoc {6}{Example}{162}{0}{6}

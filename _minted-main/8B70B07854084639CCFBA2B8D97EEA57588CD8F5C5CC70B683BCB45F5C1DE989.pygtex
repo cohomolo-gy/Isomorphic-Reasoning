@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{woops} \PYG{o+ow}{::} \PYG{k+kt}{Float} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Bool}
+\PYG{n+nf}{woops} \PYG{n}{x} \PYG{o+ow}{=} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{x}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}
+\PYG{n+nf}{comparison} \PYG{o+ow}{=} \PYG{n}{woops} \PYG{o}{+}\PYG{l+m+mf}{0.0} \PYG{o}{==} \PYG{n}{woops} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.0}
+\end{Verbatim}

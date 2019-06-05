@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n+nf}{toF} \PYG{o+ow}{::} \PYG{k+kt}{Functor} \PYG{n}{f} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{f} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{b}
+\PYG{n+nf}{toF} \PYG{n}{fa} \PYG{o+ow}{=} \PYG{n}{fmap} \PYG{n}{to} \PYG{n}{fa}
+\PYG{n+nf}{fromF} \PYG{o+ow}{::} \PYG{k+kt}{Functor} \PYG{n}{f} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{f} \PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{a}
+\PYG{n+nf}{fromF} \PYG{n}{fb} \PYG{o+ow}{=} \PYG{n}{fmap} \PYG{n}{from} \PYG{n}{fb}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{::} \PYG{k+kt}{Functor} \PYG{n}{f} \PYG{o+ow}{=\PYGZgt{}} \PYG{n}{f} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{a}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n}{from} \PYG{o}{.} \PYG{n}{to}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{x} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{n}{from} \PYG{n}{x}\PYG{p}{)} \PYG{o}{.} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{x} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{n}{to} \PYG{n}{x}\PYG{p}{)}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{x} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{n}{from} \PYG{p}{(}\PYG{n}{fmap} \PYG{n}{to} \PYG{n}{x}\PYG{p}{)}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{x} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fmap} \PYG{p}{(}\PYG{n}{from} \PYG{o}{.} \PYG{n}{to}\PYG{p}{)} \PYG{n}{x}
+\PYG{n+nf}{fromTo} \PYG{o+ow}{=} \PYG{n}{identity}
+\end{Verbatim}

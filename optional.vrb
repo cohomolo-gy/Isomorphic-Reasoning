@@ -1,0 +1,11 @@
+
+Let $J: \cat{J} \to \cat{C}$ be a diagram of shape $\cat{J}$ in $\cat{C}$. A \textbf{cone} in $\cat{C}$ is an object $N \in \cat{C}$ together with a family $\beta_X: N \to JX$ such that for every morphism $Jj: JX \to JY$ we have $\beta_Y = Jj \circ \beta_X$. A \textbf{limit} is a terminal cone $(L, \phi)$ inducing a unique $f: N \to L$ such that all $\psi_{(-)}$ factor through $(L, \phi)$. I.e. $\beta_X = \phi_X \circ f$. Diagrammatically,
+
+\begin{center}
+\begin{tikzcd}[row sep = large]
+& N \arrow[d, "f", dashed, description] \arrow[ddr, bend left,"\beta_Y"]   \arrow[ddl, bend right,"\beta_X",swap] & \\
+& L \arrow[dr, "\phi_Y"]  \arrow[dl,swap, "\phi_X"] & \\
+JX  \arrow[rr,swap, "Jj"] & & JY
+\end{tikzcd}
+\end{center}
+

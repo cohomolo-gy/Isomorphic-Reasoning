@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} (a, a) $\cong$ Bool \PYGZhy{}\PYGZgt{} (a, a)}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{k+kt}{Bool} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype F x = (x, x)}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{k+kt}{Bool}\PYG{p}{,} \PYG{k+kt}{Bool}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Fin 4 is a type with 4 inhabitants.}
+    \PYG{esc}{$\cong$} \PYG{k+kt}{Fin} \PYG{l+m+mi}{4}
+\end{Verbatim}

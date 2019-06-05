@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{currying} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{((}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{c}\PYG{p}{)} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{c}\PYG{p}{)}
+\PYG{n+nf}{currying} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{n}{b} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{))}
+               \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{k+kr}{case} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n}{a} \PYG{n}{b}\PYG{p}{)}
+
+\PYG{n+nf}{leftUnitF} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nb}{()} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{n}{a}
+\PYG{n+nf}{leftUnitF} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{f} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{f} \PYG{n+nb}{()}\PYG{p}{)} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{k+kr}{\PYGZus{}} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)}
+
+\PYG{n+nf}{rightUnitF} \PYG{o+ow}{::} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{()}\PYG{p}{)} \PYG{n+nb}{()}
+\PYG{n+nf}{rightUnitF} \PYG{o+ow}{=} \PYG{k+kt}{Iso} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{k+kr}{\PYGZus{}} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{()}\PYG{p}{)} \PYG{p}{(}\PYG{n+nf}{\PYGZbs{}}\PYG{k+kr}{\PYGZus{}} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nf}{\PYGZbs{}}\PYG{k+kr}{\PYGZus{}} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{()}\PYG{p}{)}
+\end{Verbatim}

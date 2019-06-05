@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Distributing $\forall$ over $\times$}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Maybe\PYGZsq{}s definition}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} 0 \PYGZhy{}\PYGZgt{} a introduction (as a unit)}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{0} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda lemma with newtype F x = 1 + x}
+    \PYG{esc}{$\cong$} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Simplifying via x + 0 = x and 1 $\times$ x = x}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} unit introduction and Maybe\PYGZsq{}s definition}
+    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda lemma with f x = 1 + x}
+    \PYG{esc}{$\cong$} \PYG{l+m+mi}{2}
+\end{Verbatim}
