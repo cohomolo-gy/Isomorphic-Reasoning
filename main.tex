@@ -47,7 +47,7 @@ But who are we and what do we do?
 \end{frame}
 
 \begin{frame}{Why isomorphic reasoning?}
-We often get overly hyped about a new functional technique not realizing that it is the same old idea, just with a different flavor. 
+We often get overly hyped about a new functional technique not realizing that it is the same old idea, just with a different flavor.
 
 Seeing such connections between ideas will make you a better developer.
 \end{frame}
@@ -57,7 +57,7 @@ For compiler writers: Knowing that a type $T$ has only one inhabitant $\textbf{s
 \end{frame}
 
 \begin{frame}{Why count type inhabitants?}
-For IDE writers: 
+For IDE writers:
 \begin{itemize}
     \item If we can find the number of inhabitants, we can (likely) also enumerate them. This allows for type-based auto-completion up to \textbf{observational equivalence}.
     \item If we know that there are no inhabitants, we (likely) have a constructive proof of that, which means we can either auto-complete functions $0 \rightarrow a$, or we can outright allow the user to say ``this is impossible'', like Idris does.
@@ -77,10 +77,10 @@ So what do we mean by counting?
 
 \begin{frame}{Why count type inhabitants?}
 
-When are two things equal? 
+When are two things equal?
 
 \begin{itemize}
-	\item 1729 
+	\item 1729
 	\item $12^3 + 1$
 	\item ``the first number expressible as a sum of two cubes in two different ways''
 \end{itemize}
@@ -105,7 +105,7 @@ second = Add (Pow (Lit 12) (Lit 3)) (Lit 1)
 
 \begin{frame}[fragile]
 If 1729 and $12^3+1$ are integers, they are the same.
-    
+
 \end{frame}
 
 \begin{frame}[fragile]{Expressions}
@@ -136,7 +136,7 @@ $x = y \Leftrightarrow \forall P. P x \leftrightarrow P y$ where $P$ is quantifi
 \begin{frame}
 
 \begin{itemize}
-\item We can't see the difference of them as values within a pure functional language. 
+\item We can't see the difference of them as values within a pure functional language.
 \item We can see the difference between the actual expression trees.
 \item We don't really care about the latter as since it does not affect the semantics.
 \end{itemize}
@@ -145,19 +145,19 @@ $x = y \Leftrightarrow \forall P. P x \leftrightarrow P y$ where $P$ is quantifi
 
 
 \begin{frame}{But How?}
-    How does this apply to functional programming? category theory? 
-    
-    
+    How does this apply to functional programming? category theory?
+
+
 \end{frame}{}
 
 \begin{frame}{But How?}
-    
- Lets look at an example   
-    
+
+ Lets look at an example
+
 \end{frame}{}
 
 \begin{frame}{Examples of enumeration}
-    
+
     \begin{itemize}
     	\item Bool = $T \lor F$ has precisely 2 values - true of false.
 	\item tuples
@@ -165,23 +165,23 @@ $x = y \Leftrightarrow \forall P. P x \leftrightarrow P y$ where $P$ is quantifi
 	\item maybe
 	\item $\to$
     \end{itemize}
-    
+
 \end{frame}{}
 
 \begin{frame}{Isomorphisms}
-	\begin{itemize}   
-	\item So far we've been enumerating things. 
+	\begin{itemize}
+	\item So far we've been enumerating things.
 	\item But enumeration is essentially an isomorphism to a finite set.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Isomorphisms}
-	For instance enumerating the elements of \textbf{Bool} gives an bijection (an isomorphism of sets) to a set with 2 elements $\{\top, \perp\}$. 
+	For instance enumerating the elements of \textbf{Bool} gives an bijection (an isomorphism of sets) to a set with 2 elements $\{\top, \perp\}$.
 \end{frame}
 
 \begin{frame}[fragile]{Isomorphisms}
 An isomorphism is a pair of two functions, $\mathbf{to}: A \to B$ and $\mathbf{from}: B \to A$, such that $\mathbf{to} \cdot \mathbf{from} = id_B$ and $\mathbf{from} \cdot \mathbf{to} = id_A$.
-    
+
 \begin{minted}{haskell}
 data Iso a b = Iso {
   to   :: a -> b
@@ -204,7 +204,7 @@ So why are we interested in isomorphisms?
 We can prove it very easily:
 
 \begin{align*}
-    a_1 &= a_2 \\ 
+    a_1 &= a_2 \\
     \text{to}~a_1 &= \text{to}~a_2 \\
     b_1 &= b_2 \\
     \text{from}~b_1 &= \text{from}~b_2 \\
@@ -243,7 +243,7 @@ If $A$ and $B$ are isomorphic, then they have the same number of inhabitants.
 
 \begin{frame}[fragile]{More isomorphism examples}
 Let's see some interesting isomorphisms.
-    
+
 \begin{minted}{haskell}
 leftUnitP :: Iso ((), a) a
 leftUnitP = Iso (\((), a) -> a)
@@ -252,7 +252,7 @@ leftUnitP = Iso (\((), a) -> a)
 commuteP :: Iso (a, b) (b, a)
 commuteP = Iso (\(a, b) -> (b, a))
                (\(b, a) -> (a, b))
-              
+
 associateP :: Iso ((a, b), c) (a, (b, c))
 associateP = Iso (\((a, b), c) -> (a, (b, c)))
                  (\(a, (b, c)) -> ((a, b), c))
@@ -261,7 +261,7 @@ associateP = Iso (\((a, b), c) -> (a, (b, c)))
 
 \begin{frame}[fragile]
 What does this remind you of?
-    
+
 \begin{minted}{haskell}
 rightUnitP  :: Iso (a, ()) a
 leftUnitP   :: Iso ((), a) a
@@ -275,10 +275,10 @@ leftUnitC :: Iso (Either Void a) a
 leftUnitC = ...
 commuteC :: Iso (Either a b) (Either b a)
 commuteC = ...
-              
-associateC :: Iso (Either (Either a b) c) 
+
+associateC :: Iso (Either (Either a b) c)
                   (Either a (Either b c))
-associateC = 
+associateC =
   Iso (\case Left (Left a)  -> Left a;
              Left (Right b) -> Right (Left b);
              Right c        -> Right (Right c))
@@ -293,7 +293,7 @@ associateC =
 currying :: Iso ((a, b) -> c) (a -> b -> c)
 currying = Iso (\f -> \a -> \b -> f (a, b))
                (\f -> \case (a, b) -> f a b)
-               
+
 leftUnitF :: Iso (() -> a) a
 leftUnitF = Iso (\f -> f ()) (\a -> \_ -> a)
 
@@ -357,24 +357,24 @@ Types & Sets & Naturals & Categories \\
 a       & $A$ & $|A|$  & $A \in \cat{C}$ \\
 (a, b) & $A \times B$ & $|A| \times |B|$ & $A \otimes B$ \\
 Either a b & $A \sqcup B$ & $|A| + |B|$ & $A \oplus B$ \\
-$a \to b$ &  set functions & $|B|^{|A|}$ & $f \in \cat{C}(A, B)$ \\ 
+$a \to b$ &  set functions & $|B|^{|A|}$ & $f \in \cat{C}(A, B)$ \\
 () & $\{*\}$ & 1 & terminal objects \\
-Void & $\emptyset$ & 0 & initial objects \\ \hline 
+Void & $\emptyset$ & 0 & initial objects \\ \hline
 \end{tabular}
 \end{center}
 \end{frame}
-    
+
 
 \begin{frame}{Goals}
-    
-    In functional programming we work with a subtle form of arithmetic every day, but it's rare that we actually \textit{understand} what it is we're doing. It turns out to be a very deep process with a very intuitive facade! 
-    
+
+    In functional programming we work with a subtle form of arithmetic every day, but it's rare that we actually \textit{understand} what it is we're doing. It turns out to be a very deep process with a very intuitive facade!
+
 \end{frame}
 
 \begin{frame}{Steps}
-    
-    What does it mean to have this correspondence? We will the language of category theory to build the formalism using the following steps: 
-    
+
+    What does it mean to have this correspondence? We will the language of category theory to build the formalism using the following steps:
+
 \begin{itemize}
     \item Step 0: Preliminary definitions
     \item Step 1: (De-)categorification
@@ -382,8 +382,8 @@ Void & $\emptyset$ & 0 & initial objects \\ \hline
     \item Step 3: Representability
     \item Step 4: Proofs of examples
 \end{itemize}
-    
-And optionally if we have time, 
+
+And optionally if we have time,
 \begin{itemize}
     \item Step 5: Adjunctions, Limits, Colimits
     \item Step 6: A Proof Using LAPC, RAPL
@@ -391,7 +391,7 @@ And optionally if we have time,
 \end{frame}
 
 \begin{frame}{Steps}
-    
+
     Then, we will count! Lets get started with the preliminaries.
 \end{frame}
 
@@ -404,7 +404,7 @@ A \textbf{Category} consists of the following data:
     \item a collection of \textbf{objects} $x, y, z, \ldots$
     \item a collection of \textbf{morphisms} $f, g, h, \ldots$
 \end{itemize}{}
- such that 
+ such that
 \begin{itemize}
     \item each morphism has specified \textbf{domain} and \textbf{codomain} objects. The notation $f: x \to y$ signifies that the morphism $f$ has domain $x$ and codomain $y$
     \item each object has an associated \textbf{identity morphism} $1_x : x \to y$
@@ -415,7 +415,7 @@ A \textbf{Category} consists of the following data:
 \end{frame}
 \begin{frame}{Definitions}
 
-This data is subject to the following axioms: 
+This data is subject to the following axioms:
 
 \begin{itemize}
     \item For any $f: x \to y$, the composites $1_y f$ and  $f 1_x$ are both equal to $f$
@@ -423,7 +423,7 @@ This data is subject to the following axioms:
     \item Between any two objects $x, y$ in the category $\mathbf{C}$, we may speak of the collection of morphisms with domain $x$ and codomain $y$ called $Hom_{\mathbf{C}}(x, y)$. Sometimes, we will denote this object $\mathbf{C}(X, Y)$ for ease of use.
 \end{itemize}{}
 
-This is to say that the law of composition is \textit{associative} and \textit{unital} with the morphisms $1_{(-)}$  serve as two-sided identities 
+This is to say that the law of composition is \textit{associative} and \textit{unital} with the morphisms $1_{(-)}$  serve as two-sided identities
 \end{frame}
 
 \begin{frame}{Definitions}
@@ -436,11 +436,11 @@ This is to say that the law of composition is \textit{associative} and \textit{u
 \end{enumerate}{}
 \end{frame}
 \begin{frame}{Definitions}
-    All of these are examples of concrete categories - categories in which the collection of objects and collection of morphisms are both \textit{sets}. However, there are categories with in which one or more of these collections is larger than sets (like the category of categories), so we must introduce some subtlety to the theory in order to avoid category-theoretic versions of Russel's paradox in inopportune places. 
+    All of these are examples of concrete categories - categories in which the collection of objects and collection of morphisms are both \textit{sets}. However, there are categories with in which one or more of these collections is larger than sets (like the category of categories), so we must introduce some subtlety to the theory in order to avoid category-theoretic versions of Russel's paradox in inopportune places.
 \end{frame}{}
 \begin{frame}{Definitions}
     Lets introduce a few definitions that we'll use sparingly when in need:
-    
+
 \begin{definition}
 
 A category $\mathbf{C}$ is...
@@ -451,12 +451,12 @@ A category $\mathbf{C}$ is...
 \end{itemize}{}
 \end{definition}
 
-For our purposes, when working with types, we are usually working in a concrete category, if not $\mathbf{C}$ directly. 
+For our purposes, when working with types, we are usually working in a concrete category, if not $\mathbf{C}$ directly.
 \end{frame}
- 
+
 \begin{frame}{Definitions}
     \begin{definition}
-        For every category $\mathbf{C}$ we may speak about its \textbf{dual} notion $\mathbf{C}^{op}$, the \textbf{opposite category} of $\mathbf{C}$, which consists of the following data: 
+        For every category $\mathbf{C}$ we may speak about its \textbf{dual} notion $\mathbf{C}^{op}$, the \textbf{opposite category} of $\mathbf{C}$, which consists of the following data:
         \begin{itemize}
             \item the same objects as $\mathbf{C}$
             \item a morphism $f^{op}$ in $\mathbf{C}^{op}$ for each morphism $f$ in $\mathbf{C}$ with the codomain and domain reversed. i.e. when $f: x \to y$, $f^{op} : y \to x$.
@@ -467,7 +467,7 @@ For our purposes, when working with types, we are usually working in a concrete 
 
 \begin{frame}{Definitions}
 The data described in the previous slide defines a category in relation to itself. The process of "turning around the arrows" or "swapping domains and codomains" exhibits a syntactic self-duality for every category, retaining the precisely the same information as $\mathbf{C}$. In this way, we have a unique perspective in Category Theory: For every theorem proven in general for a category, we immediately prove its dual, since the opposite category is a valid category in its own right. More generally, if one proves theorems "for all categories $\mathbf{C_1}, \mathbf{C_2}, \ldots , \mathbf{C_n}$", then this leads to $2^n$ dual theorems. In practice though, these dual theorems do not differ meaningfully from the original.
-    
+
 \end{frame}{}
 
 \begin{frame}{Definitions}
@@ -476,47 +476,47 @@ The data described in the previous slide defines a category in relation to itsel
 
 \begin{frame}{Definitions}
     \begin{definition}[Isomorphism]
-       An \textbf{isomorphism} in a category is a morphism $f: x \to y$ for which there exists a morphism $g: y \to x$ such that $gf = 1_x$ and $fg = 1_y$ ($g$ is a two-sided inverse). The objects $x$ and $y$ are said to be \textbf{isomorphic}, and we denote this $x \cong y$. 
+       An \textbf{isomorphism} in a category is a morphism $f: x \to y$ for which there exists a morphism $g: y \to x$ such that $gf = 1_x$ and $fg = 1_y$ ($g$ is a two-sided inverse). The objects $x$ and $y$ are said to be \textbf{isomorphic}, and we denote this $x \cong y$.
     \end{definition}
-    
+
 \end{frame}{}
 
 \begin{frame}{Definitions}
 
     \begin{definition}[Functor]
-        A \textbf{functor} $F: \mathbf{C} \to \mathbf{D}$ between categories $\mathbf{C}$ and $\mathbf{D}$ consists of the following data: 
-        
+        A \textbf{functor} $F: \mathbf{C} \to \mathbf{D}$ between categories $\mathbf{C}$ and $\mathbf{D}$ consists of the following data:
+
         \begin{itemize}
             \item An object $Fc \in \mathbf{D}$ for each object $c \in \mathbf{C}$
             \item A morphism $Ff: Fc \to Fc'$ in \textbf{D} for each morphism $f \in \mathbf{C}$
         \end{itemize}{}
     \end{definition}{}
-    
-Additionally, the following must be satisfied: 
+
+Additionally, the following must be satisfied:
 \begin{itemize}
     \item For any composable pair $f, g$ in $\mathbf{C}$, $Fg \cdot Ff = F(g \cdot f)$
-    
-    \item For each object $c \in \mathbf{C}$, $F(1_c) = 1_{Fc}$     
+
+    \item For each object $c \in \mathbf{C}$, $F(1_c) = 1_{Fc}$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Definitions}
 
 So far, we have defined a functor which acts uniformly on arrows. However, there exist functors which have a tendency to take arrows in the source category and flip the direction of the arrows such that they point the opposite way in the target category i.e. for any such functor $F: \mathbf{C} \to \mathbf{D}$ and any objects $c, c'$ and morphism $f: c \to c'$ in \textbf{C}, we have $Ff: Fc' \to Fc$. Such functors are called \textbf{contravariant} functors, in contrast to their siblings which are called \textbf{covariant}.
-    
+
 \end{frame}
 
 \begin{frame}{Definitions}
 
 Instead of differentiating each functor by variance, note that every contravariant functor is a covariant functor $F: \mathbf{C}^{op} \to \mathbf{D}$. Instead of juggling variance, we will simply be sure to specify the variance of a functor by whether or not it maps from an opposite category.
-    
+
 \end{frame}
 
 \begin{frame}{Definitions}
 
     \begin{itemize}
         \item The power set functor $P: \mathbf{Set} \to \mathbf{Set}$ that sends a set $A$ to its power set $PA = \{U : U \subset A\}$ and a function $f: A \to B$ to the direct image function $f_* : PA \to PB$ which sends $U \subset A$ to $f_*(U) \subset B$
-        
+
         \item The contravariant power set functor $P: \mathbf{Set}^{op} \to \mathbf{Set}$ sends a set $A$ to its power set $PA$, and every function $f: A \to B$ to the inverse-image function $f^{-1}: PB \to PA$ such that $V \subset B \mapsto f^{-1}(V) \subset A$.
     \end{itemize}{}
 \end{frame}{}
@@ -525,7 +525,7 @@ Instead of differentiating each functor by variance, note that every contravaria
 
 \begin{itemize}
     \item For any $c \in \mathbf{C}$ the covariant Hom-functor $\mathbf{C}(c, -): \mathbf{C} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set}, and morphisms to post-composition.
-    \item For any $c \in \mathbf{C}^{op}$ the contravariant Hom-functor $\mathbf{C}(-, c): \mathbf{C}^{op} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set} and morphisms to pre-composition. 
+    \item For any $c \in \mathbf{C}^{op}$ the contravariant Hom-functor $\mathbf{C}(-, c): \mathbf{C}^{op} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set} and morphisms to pre-composition.
 \end{itemize}{}
 \end{frame}{}
 
@@ -533,29 +533,29 @@ Instead of differentiating each functor by variance, note that every contravaria
 
 \begin{definition}[Initial and Terminal objects]
 
-An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects in $c' \in \cat{C}$, there exists a single unique (up to isomorphism) morphism $c' \to c$. Dually, an object is called \textbf{initial} if there exists a single unique (up to isomorphism) morphism from $c$ to any other $c' \in \cat{C}$.  
+An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects in $c' \in \cat{C}$, there exists a single unique (up to isomorphism) morphism $c' \to c$. Dually, an object is called \textbf{initial} if there exists a single unique (up to isomorphism) morphism from $c$ to any other $c' \in \cat{C}$.
 \end{definition}
 \end{frame}
 
 \begin{frame}{Definitions (cont'd) }
 
 \begin{itemize}
-	\item In $\cat{Set}$, the singleton set $\{*\}$ is terminal and the empty set $\emptyset$ is initial. 
+	\item In $\cat{Set}$, the singleton set $\{*\}$ is terminal and the empty set $\emptyset$ is initial.
 	\item In the categories $\cat{Grp}$ of groups and group homomorphisms and $\cat{Mon}$ of monoids and monoid homomorphisms, the trivial group/monoid $1$ is both initial and terminal
-	\item 
+	\item
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-    
+
     \begin{definition}[Natural Transformation]
-        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data: 
-        
+        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data:
+
         \begin{itemize}
             \item To each $c \in C$, a component morphism $\alpha_c : Fc \to Gc$ exists such that the following diagram commutes or any $c, c' \in \mathbf{C}$ and $f: c \to c'$:
             \begin{center}
                 \begin{tikzcd}
-                    Fc 
+                    Fc
                       \ar[r, "\alpha_c"]
                       \ar[d, "Ff"]
                     & Gc \ar[d, "Gf"] \\
@@ -564,22 +564,22 @@ An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects 
             \end{tikzcd}{}
             \end{center}{}
         \end{itemize}{}
-        
+
     \end{definition}{}
- 
+
  There is such a thing as a \textbf{natural isomorphism} as well. How might you define one?
 \end{frame}
 
 \begin{frame}[fragile]
-    
+
     \begin{definition}[Natural Transformation]
-        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data: 
-        
+        A \textbf{natural transformation} between two functors $F,G: \mathbf{C} \to \mathbf{D}$ consists of the following data:
+
         \begin{itemize}
             \item To each $c \in C$, a component morphism $\alpha_c : Fc \to Gc$ exists such that the following diagram commutes or any $c, c' \in \mathbf{C}$ and $f: c \to c'$:
             \begin{center}
                 \begin{tikzcd}
-                    Fc 
+                    Fc
                       \ar[r, "\alpha_c"]
                       \ar[d, "Ff"]
                     & Gc \ar[d, "Gf"] \\
@@ -588,9 +588,9 @@ An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects 
             \end{tikzcd}{}
             \end{center}{}
         \end{itemize}{}
-        
+
     \end{definition}{}
-    
+
     \begin{definition}[natural isomorphism]
       A \textbf{natural isomorphism} is a natural isomorphism where each component is an isomorphism. We'll denote them as $\alpha: F \cong G$.
     \end{definition}{}
@@ -598,7 +598,7 @@ An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects 
 
 \begin{frame}{Definitions}
 
-In effect, this means that the following naturality condition holds for all $c, c' \in \mathbf{C}$ for a given transformation $\alpha: F \Rightarrow G$: 
+In effect, this means that the following naturality condition holds for all $c, c' \in \mathbf{C}$ for a given transformation $\alpha: F \Rightarrow G$:
 
 \begin{center}
     \begin{equation*}
@@ -620,11 +620,11 @@ In effect, this means that the following naturality condition holds for all $c, 
 \end{frame}
 
 \begin{frame}{Definitions}
-    Examples of natural transformations appear everywhere in the wild. Here are a few: 
-    
+    Examples of natural transformations appear everywhere in the wild. Here are a few:
+
     \begin{itemize}
         \item There is a natural transformation $\eta_A : 1_{\mathbf{Set}} \Rightarrow P$ from the identity to the covariant power set functor whose components $\eta_A : A \to PA$ are functions that carry $a \in A$ to ${a} \in PA$.
-        
+
         \item The open and closed subset functors are naturally isomorphic when regarded as functors $\mathcal{O},\mathcal{C}: \mathbf{Top}^{op} \to \mathbf{Set}$. The components are defined by taking an open subset of $X$ to its complement, which is closed. Thus, the "naturality" condition asserts that forming complements commutes with taking preimages (i.e. $f^{-1}(V)^c \cong f^{-1}(V^c)$).
     \end{itemize}{}
 \end{frame}
@@ -634,7 +634,7 @@ In effect, this means that the following naturality condition holds for all $c, 
 
 \begin{frame}{Categorification}
     What is \textbf{(de-)categorification}?
-   
+
 \end{frame}
 
 \begin{frame}{Categorification}
@@ -659,9 +659,9 @@ Types & Sets & Naturals & Categories \\
 a       & $A$ & $|A|$  & $A \in \cat{C}$ \\
 (a, b) & $A \times B$ & $|A| \times |B|$ & $A \otimes B$ \\
 Either a b & $A \sqcup B$ & $|A| + |B|$ & $A \oplus B$ \\
-$a \to b$ &  set functions & $|B|^{|A|}$ & $f \in \cat{C}(A, B)$ \\ 
+$a \to b$ &  set functions & $|B|^{|A|}$ & $f \in \cat{C}(A, B)$ \\
 () & $\{*\}$ & 1 & terminal objects \\
-Void & $\emptyset$ & 0 & initial objects \\ \hline 
+Void & $\emptyset$ & 0 & initial objects \\ \hline
 \end{tabular}
 \end{center}
 
@@ -686,8 +686,8 @@ What is true when $a = b$?
 \end{frame}
 
 \begin{frame}{Categorification}
-If we use the representation that natural numbers correspond with the cardinality of finite sets, 
-then there is a correspondence between equality of natural numbers, and equivalence classes of isomorphisms of  
+If we use the representation that natural numbers correspond with the cardinality of finite sets,
+then there is a correspondence between equality of natural numbers, and equivalence classes of isomorphisms of
 finite sets.
 \end{frame}
 
@@ -705,7 +705,7 @@ The taking of cardinalities constructs a functor $|-|\colon \cat{Fin_{Iso}} \to 
 
 \begin{frame}{Categorification}
     Lets apply the same sort of categorification.
-    
+
 \end{frame}
 
 \begin{frame}{Categorification}
@@ -716,7 +716,7 @@ What sets have size $a \times b$,  $b + c$ and $c^d$?
 
 \begin{frame}{Categorification}
 
-By counting, 
+By counting,
     \begin{itemize}
         \item $|A \times B| \cong a \times b$
         \item $|B \sqcup C| \cong b + c$.
@@ -740,7 +740,7 @@ It establishes a correspondence between objects in a category with objects in $\
 
 \begin{frame}{Categorification}
 
-Summary: 
+Summary:
 
 \begin{align*}
     A \times B \Rightarrow a \times b &\leftrightsquigarrow |A \times B| \cong a \times b \\
@@ -750,34 +750,34 @@ Summary:
 \end{frame}
 
 \begin{frame}{Categorification}
-    
+
     So what does this correspond to?
-    
+
     \begin{block}{}
         $a \times (b + c) = (a \times b) + (a \times c) $
     \end{block}{}
 \end{frame}{}
 
 \begin{frame}{Categorification}
-    
+
     So what does correspond to?
-    
+
     \begin{block}{}
         $a \times (b + c) = (a \times b) + (a \times c) $
     \end{block}{}
- 
+
  Answer:
 
 \begin{block}{}
     $A \times (B + C) \cong (A \times B) \sqcup (A \times C)$
 \end{block}{}
- 
+
 \end{frame}{}
 
 \section{Yoneda Lemma}
 \subsection{}
 \begin{frame}{Yoneda}
-    
+
 \begin{block}{A perspective:}
     An objects is fully determined by its relationship to other objects.
 \end{block}{}
@@ -786,8 +786,8 @@ Summary:
 \end{frame}
 
 \begin{frame}{Yoneda}
-    
-    
+
+
 \begin{block}{Translation:}
     An object is fully determined by the morphisms and to and from the object.
 \end{block}{}
@@ -795,12 +795,12 @@ Summary:
 \end{frame}
 
 \begin{frame}{Yoneda}
-    
+
 Q: But why is this important? Why do we care?
 \end{frame}
 
 \begin{frame}
-To quote from a friend: 
+To quote from a friend:
 \begin{block}{}
     "Most statements in elementary category theory can be proved using some variant statement of yoneda together with information about the category of sets"
 \end{block}{}
@@ -809,12 +809,12 @@ To quote from a friend:
 
 
 
-\begin{frame} 
+\begin{frame}
 \begin{block}{The Yoneda Lemma}
-    $A$ and $B$ are isomorphic if and only if 
+    $A$ and $B$ are isomorphic if and only if
     \begin{itemize}
         \item For all $X$, $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$
-        
+
         \item the isomorphisms $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ are \textit{natural} with respect to any function $f : X \to Y$.
     \end{itemize}{}
 \end{block}{}
@@ -824,7 +824,7 @@ To quote from a friend:
 \end{frame}
 \begin{frame}{Yoneda}
     Q: But what does this mean?
-    
+
 \end{frame}
 \begin{frame}{Yoneda}
     \begin{block}{The Yoneda Lemma}
@@ -836,11 +836,11 @@ To quote from a friend:
     \begin{block}{The Yoneda Lemma}
         $A$ and $B$ are isomorphic if and only if the functors $\mathbf{C}(A, -) $ and $\mathbf{C}(B, -)$ are naturally isomorphic.
     \end{block}{}
-    
+
     \begin{proof}[Proof ($\Leftarrow$)]
-    
-        Let $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ for every $X$. Let $X = A$, and $X = B$. Then, we prove this using the following bijections and a diagram chase (see board): 
-        
+
+        Let $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ for every $X$. Let $X = A$, and $X = B$. Then, we prove this using the following bijections and a diagram chase (see board):
+
         \begin{equation*}
             \mathbf{C}(A, A) \cong \mathbf{C}(B, A) \cong \mathbf{C}(B, B)
         \end{equation*}{}
@@ -851,9 +851,9 @@ To quote from a friend:
     \begin{block}{The Yoneda Lemma}
         $A$ and $B$ are isomorphic if and only if the sets $\mathbf{C}(A, X) $ and $\mathbf{C}(B, X)$ are naturally isomorphic.
     \end{block}{}
-    
+
     \begin{proof}[Proof ($\Rightarrow$)]
-    
+
         Note that $\mathbf{C}(A,-)$ is a functor $\mathbf{C} \to \mathbf{C}$. Functors preserve isomorphisms. Hence, $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ for all $X$.
 
     \end{proof}
@@ -864,69 +864,69 @@ To quote from a friend:
 \section{Representability}
 
 \begin{frame}{Representable Yoneda}
-    
+
 Consider the previous statement, that $A \cong B \iff \cat{C}(A, X) \cong \cat{C}(B, X)$ for all $X$. Lets consider just $\cat{C}(A, X)$.
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 In some sense the functor $\cat{C}(A, -)$ is determined by both an object $A \in \cat{C}$, as well as the functor $\cat{C}(A,-)$.
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 Suppose I wanted to generalize the previous Yoneda lemma to any functor from $F \in \homf{C}{Set}$. What would be needed?
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 We would need a the same representing object, of course, but what properties would we need $F$ to have?
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 We have already seen a mechanism that can transform one functor into another: a natural transformation! In fact, we need something slightly stronger than a transformation - we must require that this be a natural isomorphism!
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 \begin{definition}[Representable Functors]
 A functor $F \in \homf{C}{Set}$ is called \textbf{representable} if it is naturally isomorphic to $\cat{C}(A,-)$ for some object $A \in \cat{C}$. A \textbf{representation} of $F$ is a pair $(A, \Phi)$ of its \textbf{representing object}, A, and a natural isomorphism $\Phi : \cat{C}(A,-) \cong F$.
 
 \end{definition}
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
-Indeed, this gives us a new, and  characterization of the Yoneda lemma in terms of representable functors. 
-    
+
+Indeed, this gives us a new, and  characterization of the Yoneda lemma in terms of representable functors.
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 Representability says that $FX \cong_{\Phi_X} \cat{C}(A,X)$, but what we truly want to prove is that when $ A \cong B$, we have $FA \cong FB$.
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 In fact, we want that if $A \cong B$, then $\cat{C}(A,-) \cong FA$ and  $\cat{C}(B,-) \cong FB$.
-    
+
 \end{frame}
 
 \begin{frame}{Representable Yoneda}
-    
+
 In philosophical terms, this would allow us to say that whenever a representation $(A, \Phi)$ of $F$ that is isomorphic to some other representation $(B, \Psi)$, then $FA \cong FB$. In order to prove this, we can show that the set of all transformations of $\cat{C}(A,-) \Rightarrow F$ is in correspondence with $FA$.
-    
+
 \end{frame}
 
 \begin{frame}{Yoneda Lemma}
-    
+
     \begin{definition}[Yoneda Lemma]
         Let $F \in [\mathbf{C}, \mathbf{Set}]$ be a representable functor, and let $A \in C$. The set of natural transformations $[\mathbf{C}, \mathbf{Set}](\mathbf{C}(A,-), F)$ is in bijection with $FA$ for all $A \in \mathbf{C}$. This bijection associates a morphism (natural transformation) $\alpha: \mathbf{C}(A,-) \Rightarrow F$ to the identity $\alpha(1_A) \in FA$
     \end{definition}{}
@@ -988,12 +988,12 @@ Contravariant functor: & $(\forall x. (x \to a) \to f~x) \cong f~a$.
 \begin{frame}[fragile]
 Expressed in Haskell these look like this:
 \begin{minted}[escapeinside=||,mathescape]{haskell}
-covariant :: Functor f => 
+covariant :: Functor f =>
              Iso (forall x. (a -> x) -> f x) (f a)
 covariant = Iso (\f -> f identity)
                 (\fa -> \f -> fmap f fa)
-                
-contravariant :: Contravariant f => 
+
+contravariant :: Contravariant f =>
                  Iso (forall x. (x -> a) -> f x) (f a)
 contravariant = Iso (\f -> f identity)
                     (\fa -> \f -> contramap f fa)
@@ -1005,7 +1005,7 @@ Let's look at the individual components of the first isomorphism:
 \begin{minted}[escapeinside=||,mathescape]{haskell}
 to :: (forall x. (a -> x) -> f x) -> (f a)
 to f = f id
-                
+
 from :: f a -> (forall x. (a -> x) -> f x)
 from fa = \f -> fmap f fa
 \end{minted}
@@ -1017,9 +1017,9 @@ from fa = \f -> fmap f fa
 fromTo :: Functor f => (forall x. (a -> x) -> f x) ->
                        (forall x. (a -> x) -> f x)
 fromTo = from . to
-fromTo = (\fa -> \g -> fmap g fa) . 
+fromTo = (\fa -> \g -> fmap g fa) .
          (\f -> f id)
-fromTo = \f -> \g -> fmap g (f id) 
+fromTo = \f -> \g -> fmap g (f id)
 -- Using parametricity
 fromTo = \f -> \g -> f (g . id)
 -- Function composition
@@ -1035,7 +1035,7 @@ fromTo = id
 toFrom :: Functor f => f a -> f a
 toFrom = to . from
 toFrom = (\f -> f id) . (\fa -> \g -> fmap g fa)
-         
+
 toFrom = \fa -> (\g -> fmap g fa) id
 toFrom = \fa -> fa
 toFrom = id
@@ -1236,12 +1236,12 @@ and (\em non-trivial)
 Proof for $\forall x. f x \times g x \cong (\forall x. f x) \times (\forall x. g x)$:
 \begin{minted}[escapeinside=||,mathescape]{haskell}
 -- Dependent types are for clarity...
-to :: ((x :: *) -> (f x, g x)) 
-   -> ((x :: *) -> f x, (x :: *) -> g x)
+to :: ((x :: *) -> (f x, g x))
+    -> ((x :: *) -> f x, (x :: *) -> g x)
 to pair = (\t -> fst (pair t), \t -> snd (pair t))
 
-from :: ((x :: *) -> f x, (x :: *) -> g x) 
-     -> ((x :: *) -> (f x, g x))
+from :: ((x :: *) -> f x, (x :: *) -> g x)
+        -> ((x :: *) -> (f x, g x))
 from pair = (\t -> (fst pair t, snd pair t))
 \end{minted}
 \end{frame}
@@ -1249,15 +1249,15 @@ from pair = (\t -> (fst pair t, snd pair t))
 \begin{frame}[fragile]
 Proof for $\forall x. f x + g x \cong (\forall x. f x) + (\forall x. g x)$:
 \begin{minted}[escapeinside=||,mathescape]{haskell}
-to :: ((x :: *) -> Either (f x) (g x)) 
-   -> Either ((x :: *) -> f x) ((x :: *) -> g x)
+to :: ((x :: *) -> Either (f x) (g x))
+    -> Either ((x :: *) -> f x) ((x :: *) -> g x)
 -- Using parametricity here:
 to e = case (e ()) of
-  Left  fx -> Left  (\t -> (unsafeCoerce fx :: f t))
-  Right gx -> Right (\t -> (unsafeCoerce gx :: f t))
+    Left  fx -> Left  (\t -> (unsafeCoerce fx :: f t))
+    Right gx -> Right (\t -> (unsafeCoerce gx :: f t))
 
 from :: Either ((x :: *) -> f x) ((x :: *) -> g x)
-     -> ((x :: *) -> Either (f x) (g x))
+        -> ((x :: *) -> Either (f x) (g x))
 from (Left fx)  = \t -> Left  (fx t)
 from (Right gx) = \t -> Right (gx t)
 \end{minted}
@@ -1285,29 +1285,368 @@ Let's back to Maybe a $\rightarrow$ Maybe a.
 \end{frame}
 
 \begin{frame}[fragile]
-Exercises: 
+Exercises:
 \begin{enumerate}
     \item Explicitly list the two inhabitants of $\forall~a~b. (a \to b) \to \text{Maybe}~a \to \text{Maybe}~b$.
-    \item Prove that $\forall~a~z. (a \to a \to z) \to z$ is isomorphic to $(a, a)$.
+    \item Prove that $\forall~z. (a \to a \to z) \to z$ is isomorphic to $(a, a)$.
+    \item Prove: If $f$ is a covariant functor, then $\forall x. f~x \cong f~0$.
+    \item Prove: If $f$ is a contravariant functor, then $\forall x. f~x \cong f~1$.
+    \item Prove: If $f$ is a phantom functor, then $\forall x. f~x \cong f~1 \cong f~0$.
 \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+Exercises:
+\begin{enumerate}
+    \item Explicitly list the two inhabitants of $\forall~a~b. (a \to b) \to \text{Maybe}~a \to \text{Maybe}~b$.
+    \item Prove that $\forall~z. (a \to a \to z) \to z$ is isomorphic to $(a, a)$.
+    \item Prove: If $f$ is a covariant functor, then $\forall x. f~x \cong f~0$.
+    \item Prove: If $f$ is a contravariant functor, then $\forall x. f~x \cong f~1$.
+    \item Prove: If $f$ is a phantom functor, then $\forall x. f~x \cong f~1 \cong f~0$.
+\end{enumerate}
+\end{frame}
+
+%---------------------------------------------------------------------------
+% Representable Functors Haskell
+%---------------------------------------------------------------------------
+\section{Representables and Containers}
+\subsection{}
+
+\begin{frame}[fragile]{Representable functors}
+Yoneda Lemma tells us that $(\forall x. (a \to x) \to g~x) \cong g~a$, but what if instead of $a \to x$ we have some arbitrary $f~x$ - a natural transformation between functors $\forall x. f~x \to g~x$.
+\newline\newline
+If $f~x \cong k \to x$ for some $k$, then we get back to the good old Yoneda. Such functors are called {\em representable}.
+
+\begin{minted}{haskell}
+class Representable f k | f -> k where
+    tabulate :: f x -> (k -> x)
+    index :: (k -> x) -> f x
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Representable functors}
+That's a nice shortcut, but it is pretty limiting. There are only so many representable functors (exercise: list at least 3).
+\newline\newline
+What if $f$ = Maybe, or say, more generally, $f~x \cong f_1~x + f_2~x$, where $f_1~x \cong k_1 \to x$ and $f_2~x \cong k_2 \to x$ (in the case of Maybe, $k_1 \cong 0$ and $k_2 \cong 1$):
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| x. f x -> g x
+    |$\cong$| |$\forall$| x. (|$f_1$| x + |$f_2$| x) -> g x
+    -- Pairing
+    |$\cong$| |$\forall$| x. (|$f_1$| x -> g x) |$\times$| (|$f_2$| x -> g x)
+    -- Distributing $\forall$ over $\times$.
+    |$\cong$| (|$\forall$| x. (|$k_1$| -> x) -> g x) |$\times$| (|$\forall$| x. (|$k_2$| -> x) -> g x)
+    -- Applying Yoneda Lemma twice
+    |$\cong$| (g |$k_1$|) * (g |$k_2$|)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+In the case of $\forall x. \text{Maybe}~x \to \text{Maybe}~x$, we get:
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| x. Maybe x -> Maybe x
+    |$\cong$| Maybe 0 |$\times$| Maybe 1
+    |$\cong$| 1 |$\times$| 2
+    |$\cong$| 2
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+Generalizing
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| x. f x -> g x
+    |$\cong$| |$\forall$| x. (|$\Sigma_i$| |$f_i$| x) -> g x
+    -- Pairing
+    |$\cong$| |$\forall$| x. |$\Pi_i$| |$f_i$| x -> g x
+    -- Distributing $\forall$ over $\Pi$.
+    |$\cong$| |$\Pi_i$| (|$\forall$| x. (|$k_i$| -> x) -> g x)
+    -- Applying Yoneda Lemma a lot.
+    |$\cong$| |$\Pi_i$| g |$k_i$|
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+Functors with this shape, $f x \cong \Sigma_i k_i \to x$, are called {\em containers}. Almost every type constructor with a functor instance is a container:
+
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+Maybe x       |$\cong$| (0 -> x) + (1 -> x)
+(Bool, x)     |$\cong$| (1 -> x) + (1 -> x)
+Const Bool x  |$\cong$| (0 -> x) + (0 -> x)
+Either Bool x |$\cong$| (0 -> x) + (0 -> x) + (1 -> x)
+[x] |$\cong$| (0 -> x) + (1 -> x) + (2 -> x) + ... |$\cong$| |$\Sigma_i$| |$x^i$|
+\end{minted}
+
+The only exceptions I know of is $(x \to 0) \to 0$ and similar constructions.
+\end{frame}
+
+\begin{frame}[fragile]
+Take a closer look at:
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+[x] |$\cong$| (0 -> x) + (1 -> x) + (2 -> x) + ... |$\cong$| |$\Sigma_i$| |$x^i$|
+\end{minted}
+What does this remind you of?
+\end{frame}
+
+%---------------------------------------------------------------------------
+% A different view on free theorems
+%---------------------------------------------------------------------------
+\section{Different view on Free theorems}
+\subsection{}
+
+\begin{frame}[fragile]
+Consider some function $f$ that has the same signature as $map$ on lists:
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (a -> b) -> [a] -> [b]
+    -- Yoneda with f x = [a] -> [x]
+    |$\cong$| |$\forall$| a. [a] -> [a]
+    -- using the container formula
+    |$\cong$| |$\forall$| a. (|$\Sigma_i$| |$a^i$|) -> [a]
+    |$\cong$| |$\Pi_i$| [i]
+    -- expressing it using dependent types and renaming i to n
+    |$\cong$| (n : Nat) -> [Fin n]
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (a -> b) -> [a] -> [b]
+    |$\cong$| (n : Nat) -> [Fin n]
+\end{minted}
+
+Compare that with the free theorem for $m : \forall~a~b. (a \to b) \to [a] \to [b]$:
+\newline\newline
+m f = m id . map f = map f . m id
+\end{frame}
+
+\begin{frame}[fragile]
+Similarly if take a look at filter's signature,
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a. (a -> Bool) -> [a] -> [a]
+    |$\cong$| |$\forall$| a. [a] -> (a -> Bool) -> [a]
+    -- using the container formula
+    |$\cong$| |$\forall$| a. (|$\Sigma_i$| |$a^i$|) -> (a -> Bool) -> [a]
+    |$\cong$| |$\Pi_i$| (i -> Bool) -> [i]
+    -- expressing it using dependent types
+    -- and renaming i to n
+    |$\cong$| (n : Nat) -> Set (Fin n) -> [Fin n]
+\end{minted}
+\end{frame}
+
+%---------------------------------------------------------------------------
+% Deriving ap through zip
+%---------------------------------------------------------------------------
+\section{Deriving combinators}
+\subsection{}
+
+\begin{frame}[fragile]{Deriving \textbf{ap} through \textbf{zip}}
+Let's prove that any function that satisfies \textbf{zip}'s signature is isomorphic
+to some function that satisfies \textbf{ap}'s signature assuming that $F$ is a functor.
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (F a, F b) -> F (a, b)
+    -- Reverse Yoneda,
+    -- F (a, b) $\cong$ $\forall$ z. (a -> b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. (F a, F b) -> (a -> b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. F a -> F b -> (a -> b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. (a -> b -> z) -> F a -> F b -> F z
+    |$\cong$| |$\forall$| a b z. (a -> (b -> z)) -> (F a -> F b -> F z)
+    -- Contravariant Yoneda.
+    |$\cong$| |$\forall$| b z. F (b -> z) -> F b -> F z
+    -- Renaming.
+    |$\cong$| |$\forall$| a b. F (a -> b) -> F a -> F b
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{$aplus$ and $mplus$}
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (F a, F b) -> F (a + b)
+    -- Reverse Yoneda,
+    -- F (a + b) $\cong$ $\forall$ z. (a + b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. (F a, F b) -> (a + b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. F a -> F b -> (a -> z) -> (b -> z) -> F z
+    |$\cong$| |$\forall$| a b z. (a -> z) -> F a -> F b -> (b -> z) -> F z
+    -- Contravariant Yoneda.
+    |$\cong$| |$\forall$| b z. F z -> F b -> (b -> z) -> F z
+    |$\cong$| |$\forall$| b z. (b -> z) -> F b -> F z -> F z
+    -- Contravariant Yoneda.
+    |$\cong$| |$\forall$| z. F z -> F z -> F z
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{What is not free about \textbf{fmap}?}
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (a -> b) -> F a -> F b
+    |$\cong$| |$\forall$| z. F z -> F z
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{\textbf{join} and \textbf{bind}}
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a. F (F a) -> F a
+    |$\cong$| |$\forall$| a z. (z -> F a) -> F z -> F a
+\end{minted}
+\end{frame}
+
+%---------------------------------------------------------------------------
+% Automation
+%---------------------------------------------------------------------------
+\section{Automation}
+\subsection{}
+
+\begin{frame}[fragile]{Automating counting}
+First of all, let's take a look at the final result - \url{http://alexknvl.com:8080/index.html}.
+\end{frame}
+
+\begin{frame}[fragile]
+One important thing to understand is that we are not going to be able to solve this problem exhaustively (at least in this workshop). Like integration in calculus.
+\end{frame}
+
+\begin{frame}[fragile]
+De Brujin representation of type bindings.
+\begin{minted}{haskell}
+data Type = Fin  Integer
+          | Prod Type Type
+          | Sum  Type Type
+          | Arr  Type Type
+          | Forall Type
+          | Use Int
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{minted}{haskell}
+data Rule = Rule {
+  runRule :: Type -> [Type]
+}
+...
+small :: Type -> Either [Type] Integer
+small (Fin x) = Right x
+small e = Left $ runRule rule e
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+\begin{minted}{haskell}
+solve :: (Hashable a, Eq a)
+      => Int -> a
+      -> (a -> Either [a] b)
+      -> Either (HS.HashSet a) b
+solve max seed small = go max [seed] HS.empty where
+  go k l v | k <= 0 = Left v
+  go _ [] v         = Left v
+  go s (h : t) visited =
+    if HS.member h visited then go (s - 1) t visited
+    else case small h of
+      Right b -> Right b
+      Left more -> go (s - 1) (t ++ more)
+                      (HS.insert h visited)
+\end{minted}
+\end{frame}
+%---------------------------------------------------------------------------
+% Advanced Techniques
+%---------------------------------------------------------------------------
+\section{Advanced Techniques}
+\subsection{}
+\begin{frame}[fragile]{Double-Yoneda and HKTs}
+\begin{block}{Double Yoneda}
+    $F~A \cong \forall~f. (\forall~x. F~x \to f~x) \to f~A$ with no restrictions on $F$ or $f$!
+\end{block}
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| f. f A -> f B
+    -- newtype G x = (x = A)
+    -- f A $\cong$ $\forall$ x. G x -> f x
+    |$\cong$| |$\forall$| f. (|$\forall$| x. G x -> f x) -> f B
+    -- Double-Yoneda
+    |$\cong$| G B
+    |$\cong$| A = B
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]{Yoneda (Propositional Equality)}
+\begin{block}{Yoneda (Propositional Equality)}
+    $f~a \cong \forall~x. (a = x) \to f~x$ with no restrictions on $f$!
+\end{block}
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| f z. f z -> f z
+    -- newtype F z x = (x = z)
+    |$\cong$| |$\forall$| z f. (1 -> f z) -> f z
+    |$\cong$| |$\forall$| z f. (|$\forall$| x. F z x -> f x) -> f z
+    |$\cong$| |$\forall$| z. F z z
+    |$\cong$| |$\forall$| z. z = z
+    |$\cong$| 1
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]{Recursive types}
+What to do about $\forall a. (a \to a) \to (a \to a)$?
+\end{frame}
+\begin{frame}[fragile]
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a. (a -> a) -> a -> a
+    -- (a -> a, a) $\cong$ (1 + a) -> a
+    |$\cong$| |$\forall$| a. ((1 + a) -> a) -> a
+    -- define f x = 1 + x
+    |$\cong$| |$\forall$| a. (f a -> a) -> a
+    |$\cong$| |$\mu$| x. f x
+    |$\cong$| |$\mu$| x. 1 + x
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\forall$| a b. (a -> b -> a) -> a -> b -> a
+    -- move parameters around
+    |$\cong$| |$\forall$| a b. b -> (a -> b -> a) -> a -> a
+    |$\cong$| |$\forall$| a b. b -> ((a |$\times$| b + 1) -> a) -> a
+    |$\cong$| |$\forall$| b. b -> (|$\mu$| x. x |$\times$| b + 1)
+    -- Yoneda
+    |$\cong$| |$\mu$| x. x |$\times$| () + 1
+    |$\cong$| |$\mu$| x. x + 1
+
+|$\forall$| a. (a -> a) -> a
+    -- newtype F x = x
+    |$\cong$| |$\mu$| x. x
+    |$\cong$| 0
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]{Checking that $\mu~x.~f~x$ is inhabited}
+Is there a mechanical way to check if $\mu~x.~f~x$ is inhabited? Note that if $\mu~x.~f~x$ is inhabited, $\mu~x.~f~x > 0$, then
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+|$\mu$| x. f x > 0
+|$\forall$| x. (f x -> x) -> x > 0
+-- substituting x = 0
+(f 0 -> 0) -> 0 > 0
+-- double-negation translation preserves > 0
+f 0 > 0
+\end{minted}
+and we conclude that $\mu~x.~f~x > 0$ implies $f~0 > 0$.
+\end{frame}
+\begin{frame}[fragile]{Checking that $\mu~x.~f~x$ is inhabited}
+On the other hand,
+\begin{minted}[escapeinside=||,mathescape]{haskell}
+f 0 > 0
+-- assuming f is a covariant functor,
+-- we can map it with 0 -> ($\mu$ x. f x)
+f (|$\mu$| x. f x) > 0
+-- and we conclude
+|$\mu$| x. f x > 0
+\end{minted}
+Hence, $\mu~x.~f~x$ is inhabited if and only if $f~0$ is inhabited (assuming $f$ is a functor).
 \end{frame}
 
 \subsection{Universal Properties}
 
 \begin{frame}{Universal Properties}
 
-We have learned a great deal about yoneda, and we have shown some surprising results that begin to touch upon how it can be used to "count" type inhabitants. 
+We have learned a great deal about yoneda, and we have shown some surprising results that begin to touch upon how it can be used to "count" type inhabitants.
 \end{frame}
 
 \begin{frame}{Universal Properties}
 
-So far, we have shown that currying, pairing, and exponentiation have an interesting arithmetic. 
+So far, we have shown that currying, pairing, and exponentiation have an interesting arithmetic.
 
 \end{frame}
 
 \begin{frame}{Universal Properties}
 
-How do we realize these properties categorically? 
+How do we realize these properties categorically?
 
 \end{frame}
 
@@ -1324,11 +1663,11 @@ Because it's often germane to our studies to look at the hom-sets of maps to and
 \end{frame}
 
 \begin{frame}{Universal Properties}
-    Suppose we wanted to talk about $\mathbf{C}(A \times B, X)$. 
+    Suppose we wanted to talk about $\mathbf{C}(A \times B, X)$.
 \end{frame}
 
 \begin{frame}{Universal Properties}
-    What does a function $A \times B \to X$ look like? 
+    What does a function $A \times B \to X$ look like?
 \end{frame}{}
 
 \begin{frame}{Universal Properties}
@@ -1337,25 +1676,25 @@ Because it's often germane to our studies to look at the hom-sets of maps to and
 
 \begin{frame}{Universal Properties}
     \begin{definition}{Product}
-        Let $\mathbf{C}$ be a category, and let $X, Y \in \mathbf{C}$. A product $P$ is an object of $\mathbf{C}$ together with functions $\pi_X: P \to X$ and $\pi_Y: P \to Y$ such that the following holds:  
+        Let $\mathbf{C}$ be a category, and let $X, Y \in \mathbf{C}$. A product $P$ is an object of $\mathbf{C}$ together with functions $\pi_X: P \to X$ and $\pi_Y: P \to Y$ such that the following holds:
             \begin{itemize}
-                \item For any other $N \in \mathbf{C}$ and morphisms $f_X: N \to X$ and $f_Y : N \to Y$, we have that a unique, induced morphism $f : N \to P$ such that $f_X = \pi_Xf$ and $f_Y = \pi_Yf$. 
+                \item For any other $N \in \mathbf{C}$ and morphisms $f_X: N \to X$ and $f_Y : N \to Y$, we have that a unique, induced morphism $f : N \to P$ such that $f_X = \pi_Xf$ and $f_Y = \pi_Yf$.
             \end{itemize}
     \end{definition}
     $P$ is usually denoted $X \times Y$.
 \end{frame}{}
 
 \begin{frame}[fragile]
-More succinctly, the object $X \times Y$ in the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$: 
-    
+More succinctly, the object $X \times Y$ in the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$:
+
 \begin{center}
     \begin{tikzcd}
         & & X  \\
-        N 
+        N
           \arrow[r, dashed, "f", description]
-          \arrow[urr, "f_Y", bend left] 
-          \arrow[drr, "f_X", bend right] & 
-        X \times Y \arrow[ur, "\pi_X"] \arrow[dr, "\pi_Y"] \\ & & 
+          \arrow[urr, "f_Y", bend left]
+          \arrow[drr, "f_X", bend right] &
+        X \times Y \arrow[ur, "\pi_X"] \arrow[dr, "\pi_Y"] \\ & &
         Y
     \end{tikzcd}{}
 \end{center}{}
@@ -1363,17 +1702,17 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Universal Properties}
-    A function $f: A \times B \to X$ contains the following data: 
+    A function $f: A \times B \to X$ contains the following data:
 \end{frame}{}
 
 \begin{frame}{Meditations on $\times$}
 
-    A function $f: A \times B \to X$ contains the following data: 
+    A function $f: A \times B \to X$ contains the following data:
     \begin{block}{}
-    
+
         \begin{itemize}
             \item For $A \times B$, the function $f$ must specify an element $f(a,b) \in X$.
-            
+
             \item Additionally, for any $b \in A$, the function $f(-,b)$ must specify a function $A \to X$ sending $a$ to $f(a,b)$
         \end{itemize}{}
     \end{block}{}
@@ -1385,7 +1724,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 
 \begin{frame}{Universal Properties}
     This should look familiar. \textit{Because it's currying}!. The full statement of currying is the following:
-    
+
 \begin{block}{Currying}
 \begin{equation*}
     \mathbf{C}(A \times B, C) \cong \mathbf{C}(B, \mathbf{C}(A, X))
@@ -1398,7 +1737,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Currying}
-   There are two functors in play, and their hom sets are isomorphic. The product functor $A \times - : \cat{C} \to \cat{C}$, and an exponential functor $A^{(-)}: \cat{C} \to \cat{C}$. 
+   There are two functors in play, and their hom sets are isomorphic. The product functor $A \times - : \cat{C} \to \cat{C}$, and an exponential functor $A^{(-)}: \cat{C} \to \cat{C}$.
 \end{frame}
 
 \begin{frame}{Currying}
@@ -1406,8 +1745,8 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Currying}
-   Note that if we remove the parameters of the functor, then we are left with a statement about the natural isomorphism whose components characterize currying: 
-   
+   Note that if we remove the parameters of the functor, then we are left with a statement about the natural isomorphism whose components characterize currying:
+
    \begin{center}
    	\begin{equation*}
 		\Phi_{X,Y} : \cat{C}(A \times X, Y) \cong \cat{C}(A, Y^X)
@@ -1416,7 +1755,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Adjunction}
-   This is what is known as an \textbf{adjunction}, which characterizes the logical dual of a statement category theory. 
+   This is what is known as an \textbf{adjunction}, which characterizes the logical dual of a statement category theory.
 \end{frame}
 
 \begin{frame}{Adjunctions}
@@ -1430,7 +1769,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Adjunctions}
-   It is a theorem which we will leave to the optional slide set that states that coproducts are left adjoint to a diagonal functor, and products are right adjoint to it. 
+   It is a theorem which we will leave to the optional slide set that states that coproducts are left adjoint to a diagonal functor, and products are right adjoint to it.
 \end{frame}
 
 \begin{frame}{Pairing}
@@ -1438,32 +1777,32 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}{}
 
 \begin{frame}{Pairing}
-    First, let us define coproducts. 
+    First, let us define coproducts.
 \end{frame}{}
 
 \begin{frame}{Pairing}
     \begin{definition}{Pairing}
-        Let $\cat{C}$ be a category and let $X, Y \in \cat{C}$. A \textit{coproduct} $C$ is an object of $\cat{C}$ together with functions $i_X : X \to C$ and $i_Y: Y \to C$ such that the following holds: 
-        
+        Let $\cat{C}$ be a category and let $X, Y \in \cat{C}$. A \textit{coproduct} $C$ is an object of $\cat{C}$ together with functions $i_X : X \to C$ and $i_Y: Y \to C$ such that the following holds:
+
         \begin{itemize}
             \item For any other $N \in \cat{C}$, and morphisms $f_X: X \to N$ and $f_Y: Y \to N$, there is a unique, induced morphism $f: C \to N$ such that $f_X = fi_X$ and $f_Y = fi_Y$.
         \end{itemize}{}
     \end{definition}{}
-    
+
     The coproduct of $C$ is generally denoted $X + Y$
 \end{frame}{}
 
 \begin{frame}[fragile]
-    Or, more succinctly, the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$: 
-    
+    Or, more succinctly, the following diagram commutes for any given $N$ and morphisms $f_Y, f_X$:
+
 \begin{center}
     \begin{tikzcd}
-        X  
+        X
           \arrow[dr, "i_X"]
           \arrow[drr, "f_X", bend left]  \\
-        & X + Y \arrow[r, dashed, "f", description] 
+        & X + Y \arrow[r, dashed, "f", description]
         & N \\
-        Y 
+        Y
           \arrow[ur, "i_Y"]
           \arrow[urr, "f_Y", bend right]
     \end{tikzcd}{}
@@ -1472,12 +1811,12 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 \end{frame}
 
 \begin{frame}{Pairing}
-    Note that all that's needed to define a function $f: B + C \to X$ is then to define a pair of functions $g: B \to X$ and $h: C \to X$ associating each $b \in B$ and $c \in C$ with an element of $X$. 
+    Note that all that's needed to define a function $f: B + C \to X$ is then to define a pair of functions $g: B \to X$ and $h: C \to X$ associating each $b \in B$ and $c \in C$ with an element of $X$.
 
 \end{frame}
 
 \begin{frame}{Pairing}
-Thus, we obtain the following: 
+Thus, we obtain the following:
 
 \begin{block}{Pairing}
     \begin{equation*}
@@ -1487,7 +1826,7 @@ Thus, we obtain the following:
 \end{frame}
 
 \begin{frame}{Pairing}
-    Notice what happens when we "erase" the parameters of the pairing isomorphism just as we did for currying, and consider the natural isomorphism lying underneath. 
+    Notice what happens when we "erase" the parameters of the pairing isomorphism just as we did for currying, and consider the natural isomorphism lying underneath.
 \end{frame}
 
 \begin{frame}{Pairing}
@@ -1495,8 +1834,8 @@ Thus, we obtain the following:
 \end{frame}
 
 \begin{frame}{Pairing}
-    Therefore our functor on the right is one that takes any $X \in \cat{C}$ to its diagonal pair, $\Delta: \cat{C} \to \cat{C} \times \cat{C}$, and the components of our isomorphism take the form of 
-    
+    Therefore our functor on the right is one that takes any $X \in \cat{C}$ to its diagonal pair, $\Delta: \cat{C} \to \cat{C} \times \cat{C}$, and the components of our isomorphism take the form of
+
     \begin{center}
     	\begin{equation*}
 		\Phi_{X,Y} : \cat{C}(B + X, Y) \to \cat{C}(B \times X, \Delta Y) \cong \cat{C}(B, Y) \times \cat{C}(X, Y)
@@ -1519,10 +1858,10 @@ Can you show that $(B \times C)^A \cong B^A \times C^A$?
 
 \section{Example}
 \subsection{}
-    
+
 \begin{frame}{Proof}
     Lets prove the following:
-    
+
     \begin{center}
         \begin{equation*}
             a \times (b + c) = (a \times b) + (a \times c)
