@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n+nf}{first} \PYG{o+ow}{::} \PYG{k+kt}{Int}
-\PYG{n+nf}{first}  \PYG{o+ow}{=} \PYG{l+m+mi}{1729}
-\PYG{n+nf}{second} \PYG{o+ow}{::} \PYG{k+kt}{Int}
-\PYG{n+nf}{second} \PYG{o+ow}{=} \PYG{l+m+mi}{12}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{3} \PYG{o}{+} \PYG{l+m+mi}{1}
-\end{Verbatim}

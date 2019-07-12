@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
-\PYG{esc}{$\forall$} \PYG{n}{a} \PYG{n}{b}\PYG{o}{.} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{n}{b}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{b}
-    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Yoneda with newtype F a x = Maybe a \PYGZhy{}\PYGZgt{} Maybe x}
-    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{k+kt}{Maybe} \PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}
-    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Maybe\PYGZsq{}s definition}
-    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{a}\PYG{p}{)} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}
-    \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Pairing}
-    \PYG{esc}{$\cong$} \PYG{esc}{$\forall$} \PYG{n}{a}\PYG{o}{.} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)} \PYG{esc}{$\times$} \PYG{p}{(}\PYG{n}{a} \PYG{o+ow}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{Maybe} \PYG{n}{a}\PYG{p}{)}
-\end{Verbatim}
