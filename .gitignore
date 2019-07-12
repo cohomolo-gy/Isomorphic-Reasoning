@@ -6,3 +6,7 @@ _minted-main/
 *.synctex.gz
 *.toc
 *.vrb
+*.aux
+*.fls
+*.fdb_latexmk
+*.pyg

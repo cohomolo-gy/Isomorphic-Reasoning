@@ -196,7 +196,7 @@ data Iso a b = Iso {
 So why are we interested in isomorphisms?
 
 \begin{block}{Equality Preservation}
-    If $A$ and $B$ are isomorphic, and $a_1: A, a_2: A$ map to $b_1: B, b_2: B$ respectively, then $a_1 = a_2 \iff b_1 = b2$.
+    If $A$ and $B$ are isomorphic, and $a_1: A, a_2: A$ map to $b_1: B, b_2: B$ respectively, then $a_1 = a_2 \iff b_1 = b_2$.
 \end{block}
 \end{frame}
 
@@ -403,13 +403,13 @@ A \textbf{Category} consists of the following data:
 \begin{itemize}
     \item a collection of \textbf{objects} $x, y, z, \ldots$
     \item a collection of \textbf{morphisms} $f, g, h, \ldots$
-\end{itemize}{}
+\end{itemize}
  such that
 \begin{itemize}
     \item each morphism has specified \textbf{domain} and \textbf{codomain} objects. The notation $f: x \to y$ signifies that the morphism $f$ has domain $x$ and codomain $y$
     \item each object has an associated \textbf{identity morphism} $1_x : x \to y$
     \item For any pair of morphisms $f: x \to y, g: y \to z$ there exists a morphism $gf: x \to z$
-\end{itemize}{}
+\end{itemize}
 
 \end{definition}
 \end{frame}
@@ -421,7 +421,7 @@ This data is subject to the following axioms:
     \item For any $f: x \to y$, the composites $1_y f$ and  $f 1_x$ are both equal to $f$
     \item For any composable triple $f, g, h$, the composites $h(gf)$ and $(hg)f$ are equal, and we will simply denote them $hgf$.
     \item Between any two objects $x, y$ in the category $\mathbf{C}$, we may speak of the collection of morphisms with domain $x$ and codomain $y$ called $Hom_{\mathbf{C}}(x, y)$. Sometimes, we will denote this object $\mathbf{C}(X, Y)$ for ease of use.
-\end{itemize}{}
+\end{itemize}
 
 This is to say that the law of composition is \textit{associative} and \textit{unital} with the morphisms $1_{(-)}$  serve as two-sided identities
 \end{frame}
@@ -436,7 +436,7 @@ This is to say that the law of composition is \textit{associative} and \textit{u
 \end{enumerate}{}
 \end{frame}
 \begin{frame}{Definitions}
-    All of these are examples of concrete categories - categories in which the collection of objects and collection of morphisms are both \textit{sets}. However, there are categories with in which one or more of these collections is larger than sets (like the category of categories), so we must introduce some subtlety to the theory in order to avoid category-theoretic versions of Russel's paradox in inopportune places.
+    All of these are examples of concrete categories --- categories in which the collection of objects and collection of morphisms are both \textit{sets}. However, there are categories with in which one or more of these collections is larger than sets (like the category of categories), so we must introduce some subtlety to the theory in order to avoid category-theoretic versions of Russel's paradox in inopportune places.
 \end{frame}{}
 \begin{frame}{Definitions}
     Lets introduce a few definitions that we'll use sparingly when in need:
@@ -448,7 +448,7 @@ A category $\mathbf{C}$ is...
     \item \textbf{concrete} if its collection of objects and morphisms are both sets.
     \item  \textbf{small} if only its collection of morphisms is a set.
     \item \textbf{locally small} if for any two objects $x$ and $y$, $\mathbf{C}(x, y)$  is a set.
-\end{itemize}{}
+\end{itemize}
 \end{definition}
 
 For our purposes, when working with types, we are usually working in a concrete category, if not $\mathbf{C}$ directly.
@@ -460,7 +460,7 @@ For our purposes, when working with types, we are usually working in a concrete 
         \begin{itemize}
             \item the same objects as $\mathbf{C}$
             \item a morphism $f^{op}$ in $\mathbf{C}^{op}$ for each morphism $f$ in $\mathbf{C}$ with the codomain and domain reversed. i.e. when $f: x \to y$, $f^{op} : y \to x$.
-        \end{itemize}{}
+        \end{itemize}
     \end{definition}{}
 \end{frame}{}
 
@@ -489,7 +489,7 @@ The data described in the previous slide defines a category in relation to itsel
         \begin{itemize}
             \item An object $Fc \in \mathbf{D}$ for each object $c \in \mathbf{C}$
             \item A morphism $Ff: Fc \to Fc'$ in \textbf{D} for each morphism $f \in \mathbf{C}$
-        \end{itemize}{}
+        \end{itemize}
     \end{definition}{}
 
 Additionally, the following must be satisfied:
@@ -518,7 +518,7 @@ Instead of differentiating each functor by variance, note that every contravaria
         \item The power set functor $P: \mathbf{Set} \to \mathbf{Set}$ that sends a set $A$ to its power set $PA = \{U : U \subset A\}$ and a function $f: A \to B$ to the direct image function $f_* : PA \to PB$ which sends $U \subset A$ to $f_*(U) \subset B$
 
         \item The contravariant power set functor $P: \mathbf{Set}^{op} \to \mathbf{Set}$ sends a set $A$ to its power set $PA$, and every function $f: A \to B$ to the inverse-image function $f^{-1}: PB \to PA$ such that $V \subset B \mapsto f^{-1}(V) \subset A$.
-    \end{itemize}{}
+    \end{itemize}
 \end{frame}{}
 
 \begin{frame}{Definitions (cont'd)}
@@ -526,7 +526,7 @@ Instead of differentiating each functor by variance, note that every contravaria
 \begin{itemize}
     \item For any $c \in \mathbf{C}$ the covariant Hom-functor $\mathbf{C}(c, -): \mathbf{C} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set}, and morphisms to post-composition.
     \item For any $c \in \mathbf{C}^{op}$ the contravariant Hom-functor $\mathbf{C}(-, c): \mathbf{C}^{op} \to \mathbf{C}$ taking objects in $\mathbf{C}$ to their corresponding hom-sets in \textbf{Set} and morphisms to pre-composition.
-\end{itemize}{}
+\end{itemize}
 \end{frame}{}
 
 \begin{frame}{Definitions (cont'd) }
@@ -556,14 +556,14 @@ An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects 
             \begin{center}
                 \begin{tikzcd}
                     Fc
-                      \ar[r, "\alpha_c"]
-                      \ar[d, "Ff"]
-                    & Gc \ar[d, "Gf"] \\
-                    Fc' \ar[r, "\alpha_{c'}"]
+                      \arrow[r, "\alpha_c"]
+                      \arrow[d, "Ff"]
+                    & Gc \arrow[d, "Gf"] \\
+                    Fc' \arrow[r, "\alpha_{c'}"]
                     & Gc'
             \end{tikzcd}{}
             \end{center}{}
-        \end{itemize}{}
+        \end{itemize}
 
     \end{definition}{}
 
@@ -587,13 +587,13 @@ An object $c \in \cat{C}$ is called \textbf{terminal}, if for all other objects 
                     & Gc'
             \end{tikzcd}{}
             \end{center}{}
-        \end{itemize}{}
+        \end{itemize}
 
-    \end{definition}{}
+    \end{definition}
 
     \begin{definition}[natural isomorphism]
-      A \textbf{natural isomorphism} is a natural isomorphism where each component is an isomorphism. We'll denote them as $\alpha: F \cong G$.
-    \end{definition}{}
+      A \textbf{natural isomorphism} is a natural transformation where each component is an isomorphism. We'll denote them as $\alpha: F \cong G$.
+    \end{definition}
 \end{frame}
 
 \begin{frame}{Definitions}
@@ -603,8 +603,8 @@ In effect, this means that the following naturality condition holds for all $c, 
 \begin{center}
     \begin{equation*}
         \alpha_{c'}F = G \alpha_c
-    \end{equation*}{}
-\end{center}{}
+    \end{equation*}
+\end{center}
 \end{frame}
 
 \begin{frame}{Definitions}
@@ -626,7 +626,7 @@ In effect, this means that the following naturality condition holds for all $c, 
         \item There is a natural transformation $\eta_A : 1_{\mathbf{Set}} \Rightarrow P$ from the identity to the covariant power set functor whose components $\eta_A : A \to PA$ are functions that carry $a \in A$ to ${a} \in PA$.
 
         \item The open and closed subset functors are naturally isomorphic when regarded as functors $\mathcal{O},\mathcal{C}: \mathbf{Top}^{op} \to \mathbf{Set}$. The components are defined by taking an open subset of $X$ to its complement, which is closed. Thus, the "naturality" condition asserts that forming complements commutes with taking preimages (i.e. $f^{-1}(V)^c \cong f^{-1}(V^c)$).
-    \end{itemize}{}
+    \end{itemize}
 \end{frame}
 
 \section{Categorification}
@@ -644,7 +644,7 @@ A process by which set-theoretic concepts are expressed in terms of category the
 
 \begin{frame}{Categorification}
     Lets begin by looking at the relationship between sets, categories, and arithmetic in the natural numbers.
-\end{frame}{}
+\end{frame}
 
 \begin{frame}{Categorification}
 
@@ -722,7 +722,7 @@ By counting,
         \item $|B \sqcup C| \cong b + c$.
         \item $|C^D| \cong c ^ d$
     \end{itemize}
-\end{frame}{}
+\end{frame}
 
 
 \begin{frame}{Categorification}
@@ -755,8 +755,8 @@ Summary:
 
     \begin{block}{}
         $a \times (b + c) = (a \times b) + (a \times c) $
-    \end{block}{}
-\end{frame}{}
+    \end{block}
+\end{frame}
 
 \begin{frame}{Categorification}
 
@@ -764,15 +764,15 @@ Summary:
 
     \begin{block}{}
         $a \times (b + c) = (a \times b) + (a \times c) $
-    \end{block}{}
+    \end{block}
 
  Answer:
 
 \begin{block}{}
     $A \times (B + C) \cong (A \times B) \sqcup (A \times C)$
-\end{block}{}
+\end{block}
 
-\end{frame}{}
+\end{frame}
 
 \section{Yoneda Lemma}
 \subsection{}
@@ -780,7 +780,7 @@ Summary:
 
 \begin{block}{A perspective:}
     An objects is fully determined by its relationship to other objects.
-\end{block}{}
+\end{block}
 
 
 \end{frame}
@@ -816,7 +816,7 @@ To quote from a friend:
         \item For all $X$, $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$
 
         \item the isomorphisms $\mathbf{C}(A, X) \cong \mathbf{C}(B, X)$ are \textit{natural} with respect to any function $f : X \to Y$.
-    \end{itemize}{}
+    \end{itemize}
 \end{block}{}
 
 
@@ -1047,9 +1047,9 @@ Let's apply Yoneda lemma ($\forall x. (a \to x) \to f~x \cong f~a$) to a simple 
 
 \begin{minted}[escapeinside=||,mathescape]{haskell}
 |$\forall$| a. a -> a
-  |$\cong$| |$\forall$| a. (() |$\to$| a) -> a
+  |$\cong$| |$\forall$| a. (() -> a) -> a
   -- newtype Id a = a
-  |$\cong$| |$\forall$| a. (() \to a) -> Id a
+  |$\cong$| |$\forall$| a. (() -> a) -> Id a
   |$\cong$| Id ()
   |$\cong$| ()
 \end{minted}
@@ -1714,7 +1714,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
             \item For $A \times B$, the function $f$ must specify an element $f(a,b) \in X$.
 
             \item Additionally, for any $b \in A$, the function $f(-,b)$ must specify a function $A \to X$ sending $a$ to $f(a,b)$
-        \end{itemize}{}
+        \end{itemize}
     \end{block}{}
 \end{frame}{}
 
@@ -1786,7 +1786,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
 
         \begin{itemize}
             \item For any other $N \in \cat{C}$, and morphisms $f_X: X \to N$ and $f_Y: Y \to N$, there is a unique, induced morphism $f: C \to N$ such that $f_X = fi_X$ and $f_Y = fi_Y$.
-        \end{itemize}{}
+        \end{itemize}
     \end{definition}{}
 
     The coproduct of $C$ is generally denoted $X + Y$
@@ -1806,7 +1806,7 @@ More succinctly, the object $X \times Y$ in the following diagram commutes for a
           \arrow[ur, "i_Y"]
           \arrow[urr, "f_Y", bend right]
     \end{tikzcd}{}
-\end{center}{}
+\end{center}
 
 \end{frame}
 
